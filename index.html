@@ -424,6 +424,27 @@
     };
     stopBtn.onclick = () => { mediaRecorder.stop(); startBtn.disabled = false; stopBtn.disabled = true; };
 </script>
+// YCR 戰術廣播系統
+function executeYCRStrike() {
+    // 1. 播放炮火音效
+    const audio = new Audio('explosion.mp3'); // 這裡放您的爆破音效檔案
+    audio.play();
 
+    // 2. 自動廣播語音
+    const msg = new SpeechSynthesisUtterance("YCR防空炮，拉發執行！入侵者離開我國領空！");
+    msg.pitch = 1.5; // 更具備壓迫感的聲調
+    window.speechSynthesis.speak(msg);
+}
+// 簡單的 YCR 語音指令函數
+function triggerYCRBroadcast(message) {
+    const utterance = new SpeechSynthesisUtterance(message);
+    utterance.lang = 'zh-TW'; // 設定為台灣繁體中文
+    utterance.rate = 1.0;    // 語速
+    utterance.pitch = 1.2;   // 聲調（調高一點會更有權威感）
+    window.speechSynthesis.speak(utterance);
+}
+
+// 實戰範例：當你按下發射時，電腦自動播報
+// triggerYCRBroadcast("警告，不明飛行體請注意，這裡是YCR防空指揮部，請立即撤離領空！");
 </body>
 </html>
