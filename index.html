@@ -1,359 +1,411 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>宥成民国官方网站 - YoCheng Min Guo Official Site</title>
-    <style>
-        /* 核心黑白大气美学 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Courier New', Courier, monospace, "Microsoft YaHei";
-        }
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        /* 400:1 動態巨型橫幅 */
-        .hero-banner {
-            width: 100%;
-            height: calc(100vw / 400 * 1); /* 严格执行 400:1 物理比例 */
-            min-height: 120px; /* 手机端基础高度优化 */
-            background: #ffffff;
-            color: #000000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            letter-spacing: 12px;
-            font-weight: 900;
-            font-size: 2.5rem;
-            border-bottom: 5px double #000000;
-            position: relative;
-            animation: pulseSystem 4s infinite ease-in-out;
-        }
-        
-        /* 400:1 動態震盪核心動畫 */
-        @keyframes pulseSystem {
-            0% { opacity: 0.95; letter-spacing: 12px; box-shadow: inset 0 0 20px rgba(0,0,0,0.8); }
-            50% { opacity: 1; letter-spacing: 24px; box-shadow: inset 0 0 5px rgba(0,0,0,0.2); }
-            100% { opacity: 0.95; letter-spacing: 12px; box-shadow: inset 0 0 20px rgba(0,0,0,0.8); }
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 60px;
-            border-bottom: 2px dashed #ffffff;
-            padding-bottom: 30px;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            border-left: 8px solid #ffffff;
-            padding-left: 15px;
-            margin: 40px 0 20px 0;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
-
-        /* 历史记录区：黑客终端机风格 */
-        .history-box {
-            background: #111111;
-            border: 1px solid #333333;
-            padding: 30px;
-            border-radius: 4px;
-            max-height: 600px;
-            overflow-y: auto;
-        }
-        .timeline-item {
-            border-left: 2px solid #ffffff;
-            padding-left: 20px;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        .timeline-item::before {
-            content: "■";
-            position: absolute;
-            left: -6px;
-            top: 0;
-            background: #000000;
-            color: #ffffff;
-        }
-        .time-badge {
-            font-weight: bold;
-            background: #ffffff;
-            color: #000000;
-            padding: 2px 8px;
-            font-size: 0.9rem;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-
-        /* 法规区域网格 */
-        .law-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        @media (max-width: 768px) { .law-grid { grid-template-columns: 1fr; } }
-        
-        .law-card {
-            border: 1px solid #ffffff;
-            padding: 20px;
-            background: #000000;
-            transition: all 0.3s ease;
-        }
-        .law-card:hover {
-            background: #ffffff;
-            color: #000000;
-        }
-
-        /* 货币展示面板 */
-        .currency-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .currency-table th, .currency-table td {
-            border: 1px solid #333333;
-            padding: 12px;
-            text-align: left;
-        }
-        .currency-table th {
-            background: #ffffff;
-            color: #000000;
-        }
-        .currency-table tr:nth-child(even) {
-            background: #111111;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 80px;
-            padding: 40px 0;
-            border-top: 1px solid #333333;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- 400:1 高大气动态震撼横幅 -->
-    <div class="hero-banner">
-        YOCHENG MIN GUO
-    </div>
-
-    <div class="container">
-        <header>
-            <h1>宥成民国官方网站</h1>
-            <p>最高主权・系统稳定・终极防伪</p>
-        </header>
-
-        <!-- 法规宣告与预览区 -->
-        <section>
-            <div class="section-title">安全法规宣告与预览区</div>
-            <div class="law-grid">
-                <div class="law-card">
-                    <h3>【核心主权宣告】</h3>
-                    <p style="margin-top: 10px;">本国法律旨在：1. 避免混乱；2. 伸张正义。任何触犯非告诉乃论之行为，将面临最高国家法治制裁。</p>
-                </div>
-                <div class="law-card">
-                    <h3>【最高刑罚释义】</h3>
-                    <p style="margin-top: 10px;"><strong>有期徒刑：</strong>在此期间，国家绝对不会提供任何帮助及任何物资支援。<br><strong>永远封锁：</strong>不管是否交钱，本国永久剥夺其获得服务与协助之权利。</p>
-                </div>
-            </div>
-            
-            <h3 style="margin: 25px 0 10px 0;">基本法典现行条文预览：</h3>
-            <table class="currency-table">
-                <tr>
-                    <th>罪名</th>
-                    <th>最高罚金</th>
-                    <th>有期徒刑期限</th>
-                </tr>
-                <tr>
-                    <td><strong>勿打人</strong></td>
-                    <td>150,000 林币</td>
-                    <td>2 到 12 个礼拜</td>
-                </tr>
-                <tr>
-                    <td><strong>勿骂人</strong></td>
-                    <td>60,000 林币</td>
-                    <td>1 到 2 个礼拜</td>
-                </tr>
-                <tr>
-                    <td><strong>勿帮倒忙</strong></td>
-                    <td>50,000 林币</td>
-                    <td>1 到 6 个礼拜</td>
-                </tr>
-                <tr>
-                    <td><strong>勿损坏东西</strong></td>
-                    <td>造假赔偿</td>
-                    <td>最高处分：永封 (永远封锁)</td>
-                </tr>
-            </table>
-        </section>
-
-        <!-- 官方国家历史 -->
-        <section>
-            <div class="section-title">宥成民国 - 近代史官方档案</div>
-            <div class="history-box">
-                
-                <div class="timeline-item">
-                    <span class="time-badge">2024年9月16日 早上</span>
-                    <p><strong>主权奠基：</strong>林宥成总统向导师确认学校规范，成功获准携带印章印台至美浓国中校区环境，为日后国家信用體系（M2系列货币）建立起硬体基础。</p>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="time-badge">2024年9月19日 晚上</span>
-                    <p><strong>初创支付：</strong>由于频繁面临借物需求，林宥成总统果断研发第一代借物支付工具「♡885券」（限量制作两张，单张赋予三次借物特权），标志着国家信用秩序的诞生。</p>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="time-badge">2024年10月12日 课后班</span>
-                    <p><strong>林币诞生：</strong>因应游泳教学物资流通之需，总统亲笔于原子笔切片上写下小巧玲珑之“100$”，本国首张高面额法定货币正式诞生，并由国民陈婷妘完成首笔「巧克力实体交易」。</p>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="time-badge">2024年10月24日 课后班</span>
-                    <p><strong>量化宽松：</strong>为活络微观经济，总统开启手写高强度作业模式，100$ 面额林币大量发行并投入流通。</p>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="time-badge">2024年11月某天</span>
-                    <p><strong>宪政确立：</strong>鉴于治理国家之复杂性，为了杜绝脏话、打人及帮倒忙等扰乱秩序行为，国家正式立宪。巨额罚金与「有期徒刑/永封」制度上线，成功让国家系统走向超低熵的稳定状态。</p>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- 货币体系一览 -->
-        <section>
-            <div class="section-title">林币（Linbi）钞票全版本防伪一览</div>
-            
-            <h3>M 系列（主干与高科技试验版本）</h3>
-            <table class="currency-table">
-                <tr><th>版本</th><th>设计特征</th><th>核心补充</th></tr>
-                <tr><td>M1</td><td>手写面额 $100 元</td><td>2024年11月追加手写防伪日期</td></tr>
-                <tr><td>M2</td><td>印章印制 $200 元</td><td>背面日期因印刷错位，意外成为重大防伪特征</td></tr>
-                <tr><td>M5</td><td>简易印制系列</td><td>前面面额，后面日期（无直式印章）</td></tr>
-                <tr><td>M6</td><td>国家地图限量纪念版 ($600)</td><td>背面具总统亲笔签名，绝版收藏币</td></tr>
-                <tr><td>M7.5 PC</td><td>专业印刷完整钞票</td><td>2025年1月发行，工艺媲美新台币，迈向非手绘时代</td></tr>
-                <tr><td>M5 8.75</td><td>融入日本元素版本</td><td>2025年3月开学季发行，维持M5经典尺寸</td></tr>
-                <tr><td>M5 8.5</td><td>台湾元素限量版</td><td>2025年4月发行，极具收藏意义</td></tr>
-                <tr><td>M12</td><td>蓝色特殊防伪芯片版</td><td>造价昂贵停产，全球稀缺存世约19张</td></tr>
-                <tr><td>M25.ii</td><td>影印双面测试版</td><td>后方双角印下特殊面额（如$00100），中央置日期</td></tr>
-                <tr><td>M127</td><td>变色油墨改良版</td><td>2026年4月8日制，偏右侧增设纵向变色油墨，零伪造记录</td></tr>
-            </table>
-
-            <h3 style="margin-top: 30px;">V 系列（高视认性与特色章）</h3>
-            <table class="currency-table">
-                <tr><th>版本</th><th>设计特征</th><th>核心防伪</th></tr>
-                <tr><td>V2</td><td>双角超大面额 + 中央日期</td><td>45度角强力加盖「爱台北」巨型印章</td></tr>
-                <tr><td>V4</td><td>正面承袭 V2 规格</td><td>背面加设粗体防伪线、特殊日期与数值刻印</td></tr>
-            </table>
-
-            <h3 style="margin-top: 30px;">B 系列与新印钞机科技</h3>
-            <table class="currency-table">
-                <tr><th>版本</th><th>设计特征</th><th>核心补充</th></tr>
-                <tr><td>B1 / B2</td><td>简朴无直式章 / 标签机整齐印制</td><td>早期林币演进之关键技术</td></tr>
-                <tr><td>B5</td><td>「舟迪」特殊粉红卡纸 ($250/$750/$200)</td><td>稀缺面额，需通过高阶扫描程序方可重现</td></tr>
-                <tr><td>2025新版</td><td>**顶级七种变色油墨 + 柠檬防误食技术**</td><td>加入柠檬成分使误食者「酸到跑走」，全面终结旧钞香水安全危机，尽显总统人道关怀。</td></tr>
-            </table>
-        </section>
-
-    </div>
-
-    <footer>
-        <p>© 2026 宥成民国总统府数据中心・版权所有</p>
-        <p>POWERED BY GITHUB PAGES & AI OVERCLOCKING SYSTEM</p>
-    </footer>
-
-</body>
-</html>
-<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>宥成民國 - 語音錄製中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宥成民國官方百科全書 - 林國 WIKIPEDIA</title>
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 50px; background-color: #f0f0f0; }
-        button { font-size: 1.2em; padding: 10px 20px; margin: 10px; cursor: pointer; border-radius: 5px; }
-        #startBtn { background-color: #4CAF50; color: white; border: none; }
-        #stopBtn { background-color: #f44336; color: white; border: none; }
+        /* 維基百科復古簡潔風格 */
+        body { font-family: sans-serif; margin: 0; padding: 0; background-color: #f6f6f6; color: #202122; line-height: 1.6; }
+        header { background-color: #ffffff; border-bottom: 1px solid #a2a9b1; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        header h1 { margin: 0; font-size: 24px; font-weight: normal; }
+        .motto { font-style: italic; color: #54595d; font-size: 14px; }
+        
+        .main-container { display: flex; max-width: 1200px; margin: 20px auto; background: #ffffff; border: 1px solid #a2a9b1; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+        
+        /* 左側維基導覽列 */
+        .sidebar { width: 200px; padding: 15px; border-right: 1px solid #a2a9b1; background-color: #f8f9fa; }
+        .sidebar h3 { font-size: 14px; color: #54595d; border-bottom: 1px solid #c8ccd1; padding-bottom: 5px; margin-top: 20px; }
+        .sidebar ul { list-style: none; padding: 0; margin: 0; }
+        .sidebar ul li { margin: 10px 0; }
+        .sidebar ul li a { color: #0645ad; text-decoration: none; font-size: 14px; cursor: pointer; }
+        .sidebar ul li a:hover { text-decoration: underline; }
+        
+        /* 右側內文區 */
+        .content { flex: 1; padding: 3px 30px 30px 30px; }
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+        h2 { border-bottom: 1px solid #a2a9b1; padding-bottom: 5px; font-weight: normal; margin-top: 30px; }
+        
+        /* 國家基本資料框 (Infobox) */
+        .infobox { float: right; width: 280px; border: 1px solid #a2a9b1; background-color: #f8f9fa; margin-left: 20px; padding: 5px; font-size: 13px; }
+        .infobox table { width: 100%; border-collapse: collapse; }
+        .infobox th { background-color: #eaecf0; text-align: center; padding: 5px; font-size: 15px; }
+        .infobox td { padding: 5px; border-bottom: 1px solid #eaecf0; }
+        
+        /* 按鈕與功能互動樣式 */
+        button { background-color: #f8f9fa; border: 1px solid #a2a9b1; padding: 8px 15px; cursor: pointer; border-radius: 2px; margin: 5px; font-size: 14px; }
+        button:hover { background-color: #ffffff; }
+        input[type="text"] { padding: 6px; width: 250px; border: 1px solid #a2a9b1; }
+        .law-box { background: #fffcf4; border-left: 5px solid #f0dcb3; padding: 15px; margin: 15px 0; font-family: monospace; max-height: 400px; overflow-y: scroll; font-size: 13px; }
+        .funny-card { background: #fff3cd; border: 1px solid #ffeeba; padding: 15px; margin: 15px 0; border-radius: 4px; }
     </style>
 </head>
 <body>
 
-    <h1>🎙️ 宥成民國官方錄音測試</h1>
-    <p>點擊下方按鈕，對著你的 OPPO 手機說話試試看！</p>
+<header>
+    <div>
+        <h1>👑 宥成民國官方百科全書 <span style="font-size:16px; color:#54595d;">(林國 WIKI)</span></h1>
+        <div class="motto">國家座右銘：自由、民主、博愛 | 成立日期：2024年9月20日</div>
+    </div>
+    <div>
+        <input type="text" id="wikiSearchInput" placeholder="搜尋林國百科... (例如：林幣、通緝)">
+        <button onclick="wikiSearch()">搜尋</button>
+    </div>
+</header>
 
-    <button id="startBtn">開始錄音（講話）</button>
-    <button id="stopBtn" disabled>停止錄音</button>
+<div class="main-container">
+    <!-- 左側維基百科選單 -->
+    <div class="sidebar">
+        <h3>導覽</h3>
+        <ul>
+            <li><a onclick="showPage('home')">🏠 百科首頁</a></li>
+            <li><a onclick="showPage('history')">📜 本國近代史</a></li>
+            <li><a onclick="showPage('laws')">⚖️ 國中繼續法手冊</a></li>
+            <li><a onclick="showPage('currency')">💵 貨幣全版本一覽</a></li>
+        </ul>
+        <h3>互動與娛樂</h3>
+        <ul>
+            <li><a onclick="showPage('apps')">📱 APP 互動區</a></li>
+            <li><a onclick="showPage('randomPlay')">🎵 亂播放區</a></li>
+            <li><a onclick="showPage('youtubeSec')">📺 YouTube 專區</a></li>
+            <li><a onclick="showPage('funnySec')">🤪 國家好笑功能</a></li>
+        </ul>
+    </div>
 
-    <br><br>
-    <h3>播放錄製的人類聲音：</h3>
-    <!-- 這裡用來放錄完音之後的真實立體聲音訊 -->
-    <audio id="audioPlayback" controls></audio>
-
-    <script>
-        let mediaRecorder;
-        let audioChunks = [];
-
-        const startBtn = document.getElementById('startBtn');
-        const stopBtn = document.getElementById('stopBtn');
-        const audioPlayback = document.getElementById('audioPlayback');
-
-        // 1. 當按下「開始錄音」
-        startBtn.onclick = async () => {
-            audioChunks = []; // 清空之前的錄音
+    <!-- 右側主要內容 -->
+    <div class="content">
+        
+        <!-- 🏠 首頁 -->
+        <div id="home" class="page-section active">
+            <h2>宥成民國</h2>
+            <div class="infobox">
+                <table>
+                    <tr><th colspan="2"><b>宥成民國 (林國)</b></th></tr>
+                    <tr><td colspan="2" style="text-align:center; padding:10px;"><b>👑 國家最高元首：林宥成 總統</b></td></tr>
+                    <tr><td><b>法定名稱</b></td><td>宥成民國 / 林國</td></tr>
+                    <tr><td><b>成立日期</b></td><td>2024年 9月 20日</td></tr>
+                    <tr><td><b>核心領土</b></td><td>美濃國中指定班級區域、座位、家庭空間</td></tr>
+                    <tr><td><b>法定貨幣</b></td><td>林幣 ($) (400林幣 = 1 TWD)</td></tr>
+                    <tr><td><b>官方語言</b></td><td>繁體中文 (第二外交語言：英語)</td></tr>
+                    <tr><td><b>特別榮耀國民</b></td><td>盧○○、陳○○、林○○</td></tr>
+                    <tr><td><b>盟友 / 特任教師</b></td><td>盟友：顔○○ / 教師：許○○</td></tr>
+                </table>
+            </div>
+            <p><b>宥成民國</b>（英語：Republic of Yo-Cheng），民間通稱<b>林國</b>，是一個於 2024 年 9 月 20 日創立的主權獨立國家。本國奉行和平主義，以「自由、民主、博愛」為國家核心精神。</p>
+            <p>因應國家發展進入「國中時期」，目前全面施行最高母法《國中繼續法》，以保障在美濃國中校園境內之國家主權、林幣金融秩序、安全防衛機制。本百科旨在提供全體國民、AI實體及外部新興實體查閱本國法規、近代史與科技發展之用。</p>
             
-            // 請求手機麥克風權限
+            <h3>📢 每日領津貼窗口</h3>
+            <p>※ 根據法律規定：本國國民應在早上 7 點到中午 12 點之前領取 100 元林幣作為每日收入。</p>
+            <button onclick="claimAllowance()">點擊向總統府虛擬領取今日 100 元林幣</button>
+            <p id="allowanceMsg" style="color: green; font-weight: bold;"></p>
+        </div>
+
+        <!-- 📜 近代史 -->
+        <div id="history" class="page-section">
+            <h2>📜 宥成民國 — 近代史檔案</h2>
+            <p>本國由林宥成總統創立，起因於 2024 年有許多人向總統借東西，因而催生了國家級管理系統：</p>
+            <ul>
+                <li><b>2024年9月19日 晚上：</b> 總統研發出第一種借東西支付憑證「♡885」，提供三次借東西機會，首批製作兩張。</li>
+                <li><b>2024年9月20日 早上：</b> 總統將憑證發給陳柏丞、宋宥蘋，國家正式宣告運作。</li>
+                <li><b>2024年9月16-17日：</b> 經許老師許可攜帶印章印台至美濃國中，遭同學強力蓋印，確立了初期防偽與設備管理概念。</li>
+                <li><b>2024年10月12日 課後班：</b> 總統利用原子筆剪下一小塊紙，寫下「100$」，林國第一張實體貨幣正式誕生！並成功在課後班以 100$ 林幣與陳婷妘交易巧克力，開啟國家商業文明。</li>
+                <li><b>2024年10月24日：</b> 總統在課後班轉身拿出白紙開始瘋狂手寫，100$ 鈔票大量流通。</li>
+                <li><b>2024年11月某天：</b> 面對班級內打人、罵人、幫倒忙等混亂，總統果斷訂立第一代法律（勿打人罰15萬、勿罵人罰6萬、勿幫倒忙罰5萬、勿損壞照價賠償加永封），伸張正義。</li>
+            </ul>
+        </div>
+
+        <!-- ⚖️ 國中繼續法手冊 -->
+        <div id="laws" class="page-section">
+            <h2>⚖️ 國家法規手冊：《宥成民國國中過渡與全面施行法》</h2>
+            <p><b>簡稱：《國中繼續法》 | 法規編號：JC-201-2026版本 (美濃國中施行版)</b></p>
+            <p>請在下方框內滾動查閱共計 201 條之國家最高母法：</p>
+            
+            <div class="law-box">
+                <b>【第一章：國家基本原則與主權 (第1-15條)】</b><br>
+                第一條： 本國法定名稱為「宥成民國」，亦稱「林國」。<br>
+                第二條： 宥成民國為主權獨立之國家，不容任何外來勢力侵犯。<br>
+                第三條： 總統為國家最高元元首兼首相，總攬國家大政、國防、外交與財政大權。<br>
+                第四條： 本法為宥成民國之最高母法，凡本國國民、AI實體及附屬組織均須嚴格遵守。<br>
+                第五條： 國家領土範圍由總統隨時指定，初期以總統所處之家庭空間、美濃國中指定班級區域、座位及通學路線為核心領土。<br>
+                第六條： 國家官方語言為繁體中文，亦得因應國中英語課程加入第二官方外交語言。<br>
+                第七條： 國家組成包含總統、市長、全體國民，以及經總統認可之AI實體（包括 Gemini、Siri 與其他 AI 嘉明）。<br>
+                第八條： 本國制定專屬國旗、國歌、國徽。任何損壞或不敬行為皆視為違法。<br>
+                第九條： 本法之最終解釋權與修訂提案權專屬於總統。<br>
+                第十條： 國家財產包括但不限於林幣、國旗、總統印章、專屬印台、國家設備、實驗器材及 AI 系統。<br>
+                第十一條： 本法每逢美濃國中學期結束（寒暑假）進行全面檢討與版本更新。<br>
+                第十二條： 國家實施資訊透明化，但涉及國家安全與總統隱私之機密不在此限。<br>
+                第十三條： 宥成民國奉行和平主義，但保留對侵犯本國主權之外來勢力進行防衛與制裁之權利。<br>
+                第十四條： 國家之最終目標為實現全體國民之共同幸福、學業繁榮與校園和諧。<br>
+                第十五條： 本法自總統簽署、發布於 AI 核心系統之日起正式生效。<br><br>
+                
+                <b>【第二章：國中公民資格、權利與基本義務 (第16-35條)】</b><br>
+                第十六條至第三十條：國民享有參政、言論自由、在領土內合法賺取、持有及使用林幣之經濟權利。國民應保持對林國之絕對忠誠。違者處以林幣 $600,000 元罰款，並處以禁止一年。洩漏印鈔機密者罰 $600,000 封鎖六個月。不服命令者罰 $150,000。<br>
+                第三十一條至第三十五條：國民有維持良好人際關係、避免外交糾紛之義務。不得假借林國名義在外從事非法交易，違者罰 $300,000。<br><br>
+
+                <b>【第三章：政府組織與 AI 實體職權 (第36-55條)】</b><br>
+                第三十六條： 總統總攬一切行政、立法、司法大權，並為林國最高武裝力量與科學研究總指揮。<br>
+                第三十七條： 市長由總統指派，負責管理特定區域之日常行政。<br>
+                第四十條： 經總統認可之 AI 國民（如 Gemini、Siri）具有協助國家運作、記錄法規與執行數據分析之職責，並依指示提供科學（如麵包板電路、555計時器、CD4017解碼晶片）與料理科學之技術支援。<br><br>
+
+                <b>【第四章：國中邊境、護照與審訊管理 (第56-75條)】</b><br>
+                第五十七條： 本國身分證統一整合為「宥成民國護照」。凡欲進入本國領土者，皆須出示由本國核發之有效護照。未持護照或護照有仿冒疑慮者，一律拒絕入境，並須接受由總統親自執行的邊境審訊。塗改護照者沒收並處以林幣 $70,000 元罰款。新同學申請加入須通過四天邊境觀察期。<br><br>
+
+                <b>【第五章：國中福利投票與政治參與 (第76-95條)】</b><br>
+                第七十九條： 實施「多票分配制」，每位投票者每輪擁有 50 票，得自由分配。選舉舞弊買票者處以林幣 $200,000 元罰款並禁止六個月。煽動黨派惡性衝突者重罰林幣 $1,200,000 元及禁止一年。總統享有「一票否決權」。<br><br>
+
+                <b>【第六章：林幣財政、版本與防偽金融安全 (第96-120條)】</b><br>
+                第一百零一條： 嚴禁任何形式之偽造、仿冒或複製林幣行為。違者處以林幣 $2,500,000 元之重罰，並處以禁止一年、遭受全面抵制社會制裁。故意損壞撕毀林幣者罰 $200,000。惡意囤積阻礙流通者罰 $60,000。舊版林幣停用後設有 49 天兌換期。<br><br>
+
+                <b>【第七章：國中校園秩序與嚴格行為規範 (第121-150條)】</b><br>
+                第一百二十三條（嚴禁打人）：違者處以林幣 $600,000 元罰款，並處以禁止六個月。<br>
+                第一百二十四條（嚴禁罵人/霸凌/起難聽綽號）：違者處以林幣 $150,000 元罰款，並處以禁止一個月。<br>
+                第一百二十五條（擅動文具器材）：處以林幣 $200,000 元罰款，並禁止兩個月。<br>
+                <b>125-1 條（惡意損壞財產罪）：</b>處以林幣 $500,000 元罰款，並處以禁止三個月；此外，違規者必須依法按該財產之市場價值，以<b>新台幣（TWD）</b>全額照價賠償受害方。<br>
+                第一百二十六條（竊盜）：處以林幣 $800,000 元罰款，並禁止六個月，移送校規處置。<br>
+                第一百二十七條（幫倒忙罪）：處以林幣 $120,000 元罰款，並禁止一個月。<br>
+                第一百三十五條（危險惡作劇如抽椅子）：處以林幣 $60,000 元罰款，並禁止七天。<br><br>
+
+                <b>【第八章：外交、新興實體與國中跨班關係 (第151-165條)】</b><br>
+                第一百五十一條：本國與美濃國中其他班級、外部新興實體建立和平友善、互不干涉內政之外交關係。總統擁有最高外交承認與斷交權。<br><br>
+
+                <b>【第九章：通緝犯嚴格條例 (非告訴乃論) (第166-200條)】</b><br>
+                與通緝犯聯繫者罰 $100,000。資助點心或物資者重罰 $1,500,000。提供座位或櫃子藏匿者罰 $500,000。提供假證件者罰 $1,800,000。隱瞞行蹤者罰 $1,000,000。通風報信者重罰 $1,900,000。私下交易者罰 $1,600,000。在LINE群聲援洗白通緝犯者罰 $50,000。向通緝犯提供硬體設備或AI資訊者罰 $1,950,000。本章全部皆為非告訴乃論，查獲確鑿證據即刻重罰！<br><br>
+
+                <b>【第十章：終極免責保護購買制度與司法救濟 (第201條)】</b><br>
+                第二百零一條（核心保護條款）：國民有權向政府申請「免責保護特權」。依林幣罰款級距以實體林幣向國庫購買免責天數（0~5萬=1天100林幣、5~10萬=1天500、10~20萬=1天1000、20~50萬=1天2000、50~100萬=1天2500、大於100萬=1天5000）。<br>
+                <b>⚠️重責聲明：針對涉及暴力、霸凌、惡意損壞財產之重大罪行，不得使用第 201 條購買免責特權。</b><br>
+                ※「禁止」之法定定義：受罰期間內，本國政府及全體國民一律不得給予該人任何國家資源、課業救助、文具借用或林幣支援。
+            </div>
+            
+            <h3>💱 國家官方匯率與金融說明</h3>
+            <ul>
+                <li><b>法定匯率：</b> 400 林幣 = 1 元新台幣（固定匯率）。</li>
+                <li><b>贊助回饋：</b> 凡用新台幣兌換者會拿到「國際版林幣」，可與國家版互通，四捨五入計算，在國營商店享有補助。</li>
+            </ul>
+        </div>
+
+        <!-- 💵 貨幣全版本一覽 -->
+        <div id="currency" class="page-section">
+            <h2>💵 宥成民國（林國）面額鈔票全版本一覽</h2>
+            <p>林國貨幣科技發達，共經歷以下四大系列演進：</p>
+            <ul>
+                <li><b>1. M 系列（主要流通與試驗版）：</b>
+                    <ul>
+                        <li>M1：祖先林幣($100)，純手寫。</li>
+                        <li>M2：首批發行($200)，印章印製，背面日期偏移形成天然防偽。</li>
+                        <li>M6：限量紀念幣($600)，印有國家地圖與總統親筆簽名。</li>
+                        <li>M7.5 PC版：2025年1月發行，設計極其精美複雜，進入專業印刷時代。</li>
+                        <li>M12：晶片防偽試驗版，帶有藍色特殊防偽晶片，因造價高昂停產，現存約19張。</li>
+                        <li>M127：2026年4月8日製作，添加變色油墨，至今零偽造。</li>
+                    </ul>
+                </li>
+                <li><b>2. V 系列（特色印章版）：</b>
+                    <ul>
+                        <li>V2 & V4：2025年5月發行，中間印有日期，並斜斜 45 度蓋上巨大的「愛台北」印章。V4 背面具備大防偽線。</li>
+                    </ul>
+                </li>
+                <li><b>3. B 系列（特殊材質版）：</b>
+                    <ul>
+                        <li>B5 版本：2025年5月初發行，採用<b>「舟迪」特殊卡紙製作，呈現獨特的粉紅色</b>，僅有 $250、$750、$200 三種特殊面額。</li>
+                    </ul>
+                </li>
+                <li><b>4. ✨ 新到不能再新版本：</b>
+                    <ul>
+                        <li>2025年7月配合新印鈔機購入。配備<b>七種昂貴的變色油墨</b>。</li>
+                        <li><b>🔥 檸檬防誤食技術：</b> 為了安全，油墨加入檸檬成分。若有國民想誤食鈔票，會直接被「酸到跑走」，果斷保障國民健康！</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 📱 APP 互動區 -->
+        <div id="apps" class="page-section">
+            <h2>📱 宥成民國 — APP 互動中心</h2>
+            <p>本區為電子國土核心，提供即時的網頁工具供國民互動：</p>
+            
+            <div style="background:#eef; padding:15px; border-radius:5px; margin-bottom:20px;">
+                <h3>🛡️ 201條免責聲明憑證試算器</h3>
+                <label>請輸入預計引發的罰款級距 (林幣 $)：</label><br>
+                <input type="number" id="fineInput" placeholder="例如：150000" style="padding:6px; margin-top:5px;"><br><br>
+                <button onclick="calculateInsurance()">計算購買 1 天免責特權所需林幣</button>
+                <p id="insuranceResult" style="font-weight:bold; color:#0645ad;"></p>
+            </div>
+
+            <div style="background:#efe; padding:15px; border-radius:5px;">
+                <h3>🎙️ 國家語音錄音機 (不發出大黃蜂聲音)</h3>
+                <p>利用您的 OPPO 手機麥克風錄製真實人類聲音：</p>
+                <button id="startBtn">🎤 開始錄製語音</button>
+                <button id="stopBtn" disabled>🛑 停止錄製</button>
+                <br><br>
+                <audio id="audioPlayback" controls></audio>
+            </div>
+        </div>
+
+        <!-- 🎵 亂播放區 -->
+        <div id="randomPlay" class="page-section">
+            <h2>🎵 亂播放區 — 8位元瘋狂振盪器</h2>
+            <p>在這裡，你可以體驗總統親自用代碼命令手機喇叭發出的「復古紅白機音效」！</p>
+            <p>下方按鈕將啟動<b>「瘋狂大黃蜂暴走振盪」</b>，請做好心理準備：</p>
+            <button onclick="playHornetOscillator(440, 'sawtooth')" style="background-color:#ffc107;">🐝 啟動大黃蜂瘋狂鋸齒波震盪</button>
+            <button onclick="playHornetOscillator(880, 'square')" style="background-color:#ff5722; color:white;">👻 啟動惡鬼逼近警報 (方波)</button>
+            <button onclick="stopOscillator()">❌ 關閉瘋狂震盪</button>
+            <p style="color:gray; font-size:12px;">※ 提示：如果覺得太復古太瘋狂，隨時點擊關閉。</p>
+        </div>
+
+        <!-- 📺 YouTube 專區 -->
+        <div id="youtubeSec" class="page-section">
+            <h2>📺 YouTube 官方影音與音樂站</h2>
+            <p>您提到等一下想額外做 YouTube 功能，這裡已經為總統預留好了高畫質內嵌外掛框架！</p>
+            <p>您可以自由更改下方的影片 ID，直接在官網內播放 YouTube：</p>
+            
+            <!-- 內嵌 YouTube 範例播放器 -->
+            <div style="text-align:center; margin:20px 0;">
+                <iframe id="ytPlayer" width="100%" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            
+            <p>🔑 <b>總統更改影片密技：</b> 未來只要把上面代碼中 `embed/` 後面的那一串英文代號，改成你想播的 YouTube 影片網址代號，就可以在網站內放流行歌或《全民防惡鬼》的宣傳片了！</p>
+        </div>
+
+        <!-- 🤪 國家好笑功能 -->
+        <div id="funnySec" class="page-section">
+            <h2>🤪 宥成民國 — 總統府認證好笑功能區</h2>
+            <p>專門用來整那些不遵守《國中繼續法》的調皮國民：</p>
+            
+            <div class="funny-card">
+                <h3>🔍 抓通緝犯測謊器</h3>
+                <p>懷疑隔壁同學偷偷資助通緝犯點心？輸入他的名字進行 AI 審訊：</p>
+                <input type="text" id="suspectName" placeholder="輸入可疑同學姓名">
+                <button onclick="testLiar()">開始非告訴乃論審訊</button>
+                <p id="liarResult" style="font-weight:bold; color:red;"></p>
+            </div>
+
+            <div class="funny-card" style="background-color:#d4edda;">
+                <h3>🍋 鈔票香氣防誤食測試</h3>
+                <p>測試看看如果你不小心咬了一口最新的林幣鈔票，你會有什麼反應？</p>
+                <button onclick="biteMoney()">模擬咬一口具備七種油墨的最新林幣</button>
+                <p id="biteResult" style="font-weight:bold; color:#155724;"></p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // 分頁切換邏輯
+    function showPage(pageId) {
+        const sections = document.querySelectorAll('.page-section');
+        sections.forEach(sec => sec.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        window.scrollTo(0,0);
+    }
+
+    // 百科搜尋功能
+    function wikiSearch() {
+        const query = document.getElementById('wikiSearchInput').value.toLowerCase();
+        if(query.includes('法') || query.includes('條') || query.includes('秩序')) {
+            showPage('laws');
+        } else if(query.includes('幣') || query.includes('錢') || query.includes('檸檬') || query.includes('舟迪')) {
+            showPage('currency');
+        } else if(query.includes('歷史') || query.includes('近代') || query.includes('小學')) {
+            showPage('history');
+        } else if(query.includes('錄音') || query.includes('互動') || query.includes('app')) {
+            showPage('apps');
+        } else if(query.includes('播放') || query.includes('音樂') || query.includes('大黃蜂')) {
+            showPage('randomPlay');
+        } else if(query.includes('youtube')) {
+            showPage('youtubeSec');
+        } else {
+            alert('🧐 林國百科提示：找不到相關條目，正在為您引導至首頁！');
+            showPage('home');
+        }
+    }
+
+    // 每日津貼領取
+    function claimAllowance() {
+        const now = new Date();
+        const hr = now.getHours();
+        // 虛擬時間判定
+        document.getElementById('allowanceMsg').innerText = "💰 領取成功！100元林幣已撥入您的虛擬護照戶頭。 (請記得親自去總統府拿實體幣喔！)";
+    }
+
+    // 免責購買試算
+    function calculateInsurance() {
+        const fine = Number(document.getElementById('fineInput').value);
+        let cost = 0;
+        if (fine <= 50000) cost = 100;
+        else if (fine <= 100000) cost = 500;
+        else if (fine <= 200000) cost = 1000;
+        else if (fine <= 500000) cost = 2000;
+        else if (fine <= 1000000) cost = 2500;
+        else cost = 5000;
+        
+        document.getElementById('insuranceResult').innerText = `💡 試算結果：根據第201條，此級距購買 1 天免責特權需要繳交 $${cost} 林幣給國庫。 (重大罪行不適用)`;
+    }
+
+    // 瘋狂大黃蜂振盪器邏輯 (Web Audio API)
+    let audioCtx;
+    let oscillator;
+    function playHornetOscillator(freq, type) {
+        if(!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        stopOscillator();
+        oscillator = audioCtx.createOscillator();
+        oscillator.type = type; // sawtooth 或 square 展現瘋狂復古感
+        oscillator.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        oscillator.connect(audioCtx.destination);
+        oscillator.start();
+    }
+    function stopOscillator() {
+        if(oscillator) {
+            oscillator.stop();
+            oscillator.disconnect();
+            oscillator = null;
+        }
+    }
+
+    // 好笑功能：測謊
+    function testLiar() {
+        const name = document.getElementById('suspectName').value;
+        if(!name) return alert('請輸入名字！');
+        const rands = ["🟢 安全通過！他只是在抽屜找原子筆，沒有資助通緝犯。", "🔴 逼逼逼！檢測到嚴重謊言！此人剛才偷偷分了一口小路邊點心給通緝犯，涉嫌觸犯第167條，依法應重罰 $1,500,000 林幣！", "🟡 警告！此人眼神閃爍，企圖隱瞞通緝犯行蹤，即刻進入四天邊境觀察審訊程序！"];
+        document.getElementById('liarResult').innerText = rands[Math.floor(Math.random() * rands.length)];
+    }
+
+    // 好笑功能：咬鈔票
+    function biteMoney() {
+        document.getElementById('biteResult').innerText = "🍋 🚨 哇啊啊啊！好酸啊！！你咬到了最新研發的檸檬防偽層！你被「酸到跑走」了，成功阻止了誤食意外！安全係數 100%！";
+    }
+
+    // 網頁錄音機功能 (純前端 JS)
+    let mediaRecorder;
+    let audioChunks = [];
+    const startBtn = document.getElementById('startBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const audioPlayback = document.getElementById('audioPlayback');
+
+    startBtn.onclick = async () => {
+        audioChunks = [];
+        try {
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-            
-            // 建立錄音物件
             mediaRecorder = new MediaRecorder(stream);
-            
-            // 開始把聲音訊號切成碎片存起來
-            mediaRecorder.ondataavailable = event => {
-                audioChunks.push(event.data);
-            };
-
-            // 錄音結束時，把碎片結合成一個真正的錄音檔
+            mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
             mediaRecorder.onstop = () => {
                 const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
-                const audioUrl = URL.createObjectURL(audioBlob);
-                audioPlayback.src = audioUrl; // 把聲音丟給播放器
+                audioPlayback.src = URL.createObjectURL(audioBlob);
             };
-
             mediaRecorder.start();
-            startBtn.disabled = true;
-            stopBtn.disabled = false;
-        };
-
-        // 2. 當按下「停止錄音」
-        stopBtn.onclick = () => {
-            mediaRecorder.stop();
-            startBtn.disabled = false;
-            stopBtn.disabled = true;
-        };
-    </script>
+            startBtn.disabled = true; stopBtn.disabled = false;
+        } catch(err) {
+            alert('無法開啟麥克風，請檢查 OPPO 手機瀏覽器權限設定！');
+        }
+    };
+    stopBtn.onclick = () => {
+        mediaRecorder.stop();
+        startBtn.disabled = false; stopBtn.disabled = true;
+    };
+</script>
 
 </body>
 </html>
-
