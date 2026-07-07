@@ -286,3 +286,74 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>宥成民國 - 語音錄製中心</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; background-color: #f0f0f0; }
+        button { font-size: 1.2em; padding: 10px 20px; margin: 10px; cursor: pointer; border-radius: 5px; }
+        #startBtn { background-color: #4CAF50; color: white; border: none; }
+        #stopBtn { background-color: #f44336; color: white; border: none; }
+    </style>
+</head>
+<body>
+
+    <h1>🎙️ 宥成民國官方錄音測試</h1>
+    <p>點擊下方按鈕，對著你的 OPPO 手機說話試試看！</p>
+
+    <button id="startBtn">開始錄音（講話）</button>
+    <button id="stopBtn" disabled>停止錄音</button>
+
+    <br><br>
+    <h3>播放錄製的人類聲音：</h3>
+    <!-- 這裡用來放錄完音之後的真實立體聲音訊 -->
+    <audio id="audioPlayback" controls></audio>
+
+    <script>
+        let mediaRecorder;
+        let audioChunks = [];
+
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const audioPlayback = document.getElementById('audioPlayback');
+
+        // 1. 當按下「開始錄音」
+        startBtn.onclick = async () => {
+            audioChunks = []; // 清空之前的錄音
+            
+            // 請求手機麥克風權限
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            
+            // 建立錄音物件
+            mediaRecorder = new MediaRecorder(stream);
+            
+            // 開始把聲音訊號切成碎片存起來
+            mediaRecorder.ondataavailable = event => {
+                audioChunks.push(event.data);
+            };
+
+            // 錄音結束時，把碎片結合成一個真正的錄音檔
+            mediaRecorder.onstop = () => {
+                const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                const audioUrl = URL.createObjectURL(audioBlob);
+                audioPlayback.src = audioUrl; // 把聲音丟給播放器
+            };
+
+            mediaRecorder.start();
+            startBtn.disabled = true;
+            stopBtn.disabled = false;
+        };
+
+        // 2. 當按下「停止錄音」
+        stopBtn.onclick = () => {
+            mediaRecorder.stop();
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+        };
+    </script>
+
+</body>
+</html>
+
