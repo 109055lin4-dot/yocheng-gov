@@ -72,7 +72,7 @@
     <div style="margin-left: auto;">
         📱 <b>動態顯示載具模擬：</b>
         <select id="deviceSelector" onchange="changeDeviceMode()">
-            <option value="desktop">🖥️ 電腦大網頁版</option>
+            <option value="desktop">🖥️ 電腦大網頁版(系統預設)</option>
             <option value="ios">🍏 iOS 系統手機模式</option>
             <option value="android">🤖 Android 系統手機模式</option>
             <option value="tablet">📁 平板電腦顯示模式</option>
@@ -99,14 +99,14 @@
         <ul>
             <li><a onclick="showPage('home')">🏠 百科首頁</a></li>
             <li><a onclick="showPage('history')">📜 國家近代史檔案</a></li>
-            <li><a onclick="showPage('laws')">⚖️ 國中繼續法大分頁</a></li>
+            <li><a onclick="showPage('laws')">⚖️ 國中繼續法</a></li>
             <li><a onclick="showPage('currency')">💵 貨幣全版本一覽</a></li>
         </ul>
         <h3 id="navFun">大擴充娛樂與互動</h3>
         <ul>
             <li><a onclick="showPage('apps')">📱 電子國土 APP 區</a></li>
             <li><a onclick="showPage('pianoSec')">🎹 國家科學鋼琴專區</a></li>
-            <li><a onclick="showPage('youtubeSec')">📺 樂客搖官方影音</a></li>
+            <li><a onclick="showPage('youtubeSec')">📺 瑞克搖官方影音</a></li>
             <li><a onclick="showPage('simulatorSec')">⚔️ 國家模擬與好笑功能</a></li>
         </ul>
     </div>
@@ -124,16 +124,16 @@
                     <tr><td><b>法定名稱</b></td><td>宥成民國 / 林國</td></tr>
                     <tr><td><b>成立日期</b></td><td>2024年 9月 20日</td></tr>
                     <tr><td><b>核心領土</b></td><td>美濃國中指定班級區域、座位、家庭空間</td></tr>
-                    <tr><td><b>法定貨幣</b></td><td>林幣 ($) (400林幣 = 1 TWD)</td></tr>
+                    <tr><td><b>法定貨幣</b></td><td>林幣 ($) (400林幣 = 1 TWD)<br>*林幣英文為LD</td></tr>
                     <tr><td><b>官方語言</b></td><td>繁體中文 (第二外交語言：英語)</td></tr>
-                    <tr><td><b>特別榮耀</b></td><td>國民：盧○○、陳○○、林○○<br>總統：林○○<br>盟友：顔○○<br>教師：許○○</td></tr>
+                    <tr><td><b>特別榮耀</b></td><td>國民：盧○榛、陳○妘、林○萱<br>總統：林○成<br>盟友：顔○伊<br>教師：許○○</td></tr>
                 </table>
             </div>
             <p id="p1"><b>宥成民國</b>（英語：Republic of Yo-Cheng），民間通稱<b>林國</b>，是一個於 2024 年 9 月 20 日創立的主權獨立國家。本國奉行和平主義，以「自由、民主、博愛」為國家核心精神。</p>
             <p id="p2">因應國家發展進入「國中時期」，目前全面施行最高母法《國中繼續法》，以保障在美濃國中校園境內之國家主權、林幣金融秩序、安全防衛機制。本百科旨在提供全體國民、AI實體及外部新興實體查閱本國法規、近代史與科技發展之用。</p>
             
             <h3>📢 每日國民開戶津貼窗口</h3>
-            <p>※ 根據法律規定：本國國民應在早上 7 點到中午 12 點之前領取 100 元林幣作為每日收入，請親自來本國領土（總統府）領取實體幣。</p>
+            <p>※ 根據法律規定：本國國民應在早上 7 點到中午 12 點之前領取 100 元林幣作為每日收入(錯過請在晚自習領)，請親自來本國領土（總統府）領取實體幣。</p>
             <button onclick="alert('💰 虛擬核准成功！請於時限內至美濃國中座位找林宥成總統領取實體林幣。')">點擊領取今日 100$ 津貼</button>
         </div>
 
@@ -255,11 +255,11 @@
             <p>以下為總統指令全新研發之十項娛樂系統，保障國家校園繁榮：</p>
             
             <div class="funny-grid">
-                <div class="funny-card"><h4>1. 國中戰爭模擬器</h4><button onclick="alert('⚔️ 模擬報告：林國防衛軍成功使用555計時器干擾波，擊退隔壁班侵略！')">開始模擬</button></div>
-                <div class="funny-card"><h4>2. 檸檬油墨味覺測試</h4><button onclick="alert('🍋 🚨 哇！好酸！你被最新林幣酸到跑走了！')">咬一口鈔票</button></div>
-                <div class="funny-card"><h4>3. 非告訴乃論測謊器</h4><button onclick="alert('🔴 偵測完畢！該同學剛才偷吃通緝犯的巧克力，依法重罰 150 萬林幣！')">隨機測謊</button></div>
-                <div class="funny-card"><h4>4. 麵包板電路連通檢測</h4><button onclick="alert('⚡ CD4017 解碼晶片運轉正常，流水燈發出耀眼光芒！')">運行電路</button></div>
-                <div class="funny-card"><h4>5. 許老師抽查隱蔽演習</h4><button onclick="alert('🤫 警報！許老師走過來了！網頁邊境立刻自動切換為偽裝讀書模式！')">啟動隱蔽</button></div>
+                <div class="funny-card"><h4>1. 國中戰爭模擬器</h4><button onclick="alert('⚔️ 模擬報告：本國總統文武雙全，成功擊退敵軍！')">開始模擬</button></div>
+                <div class="funny-card"><h4>2. 目前國家最新貨幣</h4><button onclick="alert('最新貨幣為m127版本，若有舊鈔請至總統府更換！')">查詢</button></div>
+                <div class="funny-card"><h4>3. 國民人數查詢</h4><button onclick="alert('目前畢業階段空無一人，只剩總統🤡')">查詢</button></div>
+                <div class="funny-card"><h4>4. 今日畢業多少天？</h4><button onclick="alert('第34天！')">多少天？</button></div>
+                <div class="funny-card"><h4>5. 未知</h4><button onclick="alert('🤫 警報！許老師走過來了！網頁邊境立刻自動切換為偽裝讀書模式！')">啟動隱蔽</button></div>
                 <div class="funny-card"><h4>6. 國際林幣四捨五入機</h4><button onclick="alert('💱 經算，你持有的新台幣不足1元的部分，國營商店已自動給予補助！')">計算補助</button></div>
                 <div class="funny-card"><h4>7. 抽椅子惡作劇防禦網</h4><button onclick="alert('🛡️ 隔壁同學企圖抽椅子！因違反第135條，防禦網自動將其反彈並罰款6萬！')">開啟防禦</button></div>
                 <div class="funny-card"><h4>8. 護照4天觀察期計算</h4><button onclick="alert('📅 新同學目前處於第2天觀察期，行為良好，暫無通緝犯聯繫跡象。')">查詢進度</button></div>
