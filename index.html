@@ -55,6 +55,16 @@
         .piano { display: flex; margin: 20px 0; background: #222; padding: 10px; border-radius: 5px; width: max-content; }
         .key { width: 40px; height: 150px; background: white; border: 1px solid #ccc; margin: 2px; cursor: pointer; display: flex; align-items: flex-end; justify-content: center; font-weight: bold; padding-bottom: 10px; border-radius: 0 0 5px 5px; }
         .key:active { background: #ddd; }
+
+/* 禮物法專區框線美化 */
+.gift-box { 
+    background: #fffcf4; 
+    border-left: 6px solid #f0dcb3; 
+    padding: 20px; 
+    border-radius: 4px; 
+    line-height: 1.6;
+    margin-top: 10px;
+}
     </style>
 </head>
 <body>
@@ -265,10 +275,49 @@
                 <div class="funny-card"><h4>8. 護照4天觀察期計算</h4><button onclick="alert('📅 新同學目前處於第2天觀察期，行為良好，暫無通緝犯聯繫跡象。')">查詢進度</button></div>
                 <div class="funny-card"><h4>9. 永遠封鎖製裁判定</h4><button onclick="alert('🚫 檢測名單中...目前有 0 人處於無限期永封狀態，請大家保持誠實。')">盤點國庫名單</button></div>
                 <div class="funny-card"><h4>10. 網頁瞬間壞掉按鈕</h4><button onclick="destroyWeb()">💥 把網頁弄壞（騙你的）</button></div>
-            </div>
-        </div>
 
-    </div>
+<!-- 🎁 宥成民國禮物法完整頁面區塊 -->
+<div id="giftPage" class="page-section">
+    <div class="gift-box" style="background: #fffcf4; border-left: 6px solid #f0dcb3; padding: 25px; border-radius: 4px; line-height: 1.8; color: #202122; font-family: sans-serif;">
+        <h2 style="margin-top: 0; color: #1a1a1a; border-bottom: 2px solid #e0d0a0; padding-bottom: 10px;">🎁 《宥成民國禮物法》</h2>
+        
+        <p><b>第一條：立法宗旨</b><br>本法旨在規範宥成民國之禮物發放行為，確保禮物分配之公平、透明與法治原則。</p>
+        
+        <p><b>第二條：禮物資格</b><br>凡宥成民國之國民，在未違反國家法律、且國民權利未受限制的情況下，均享有接收國家禮物之資格。</p>
+        
+        <p><b>第三條：禮物分級</b><br>禮物得依發放對象之貢獻或行為表現進行分級。對於守法且對國家有貢獻之國民，應優先發放完整禮物。</p>
+        
+        <p><b>第四條：禮物限制</b><br>凡經確認違反《國中繼續法》法規中，任何涉及限制權利之條款，其接受國家禮物之權利應受限制，得僅發放部分禮物或不發放。</p>
+        
+        <p><b>第五條：例外條款</b><br>總統擁有禮物發放之最終決定權，並可依人道精神或特殊情況，對違規者做出特赦或額外禮物之贈予。</p>
+        
+        <p><b>第六條：法規解釋</b><br>本法之最終解釋權歸總統所有。</p>
+        
+        <p><b>第七條：程序透明化</b><br>禮物之發放流程應公開透明，所有國民均有權利知悉發放標準與結果。</p>
+        
+        <p><b>第八條：申訴權利</b><br>國民若對禮物發放結果有異議，可向政府提出申訴。申訴程序應遵循法規，並由總統進行最終裁決。</p>
+        
+        <p><b>第九條：禮物回饋</b><br>接受禮物之國民，應以口頭感謝或良好行為作為對國家的回饋，共同維護國家和諧。</p>
+        
+        <p><b>第十條：特殊禮物</b><br>對於國家的重大貢獻者，總統得頒發特殊禮物或榮譽稱號，不受本法之一般限制。</p>
+        
+        <div style="background: #fff8e8; border: 1px solid #e0d0a0; padding: 15px; border-radius: 4px; margin-top: 20px;">
+            <p style="margin-top: 0;"><b>第十一條：分級發放</b></p>
+            <p>本國國民："通緝犯"</p>
+            <ul style="margin-bottom: 10px;">
+                <li><b>半星（壹到五萬）：</b>扣一個禮物</li>
+                <li><b>一星（五萬到十萬）：</b>扣兩個禮物</li>
+                <li><b>二星（十萬到二十萬）：</b>扣三個禮物</li>
+                <li><b>三星（二十萬到五十萬）：</b>扣四個禮物</li>
+                <li><b>四星（五十萬到壹佰萬）：</b>只能拿一個</li>
+                <li><b>五星（壹佰萬以上）：</b>禁止領取</li>
+            </ul>
+            <p style="margin-bottom: 0; font-style: italic; color: #555;">*注釋：如果發的東西比扣的數量還要小則只能拿一個</p>
+        </div>
+               </div>
+        </div>
+   </div>
+
 </div>
 
 <script>
