@@ -7,7 +7,7 @@
     <style>
         /* 基礎樣式：維基百科風格 */
         body { font-family: sans-serif; margin: 0; padding: 0; background-color: #f6f6f6; color: #202122; line-height: 1.6; transition: all 0.3s ease; }
-        
+
         /* 系統與載具外殼切換樣式 */
         .device-mode { max-width: 1200px; margin: 20px auto; background: #ffffff; border: 1px solid #a2a9b1; box-shadow: 0 4px 8px rgba(0,0,0,0.05); display: flex; }
         .mode-ios { border: 12px solid #333 !important; border-radius: 40px !important; max-width: 430px !important; min-height: 850px; margin: 20px auto; flex-direction: column; overflow: hidden; }
@@ -19,51 +19,52 @@
         header { background-color: #ffffff; border-bottom: 1px solid #a2a9b1; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
         header h1 { margin: 0; font-size: 22px; font-weight: normal; }
         .motto { font-style: italic; color: #54595d; font-size: 13px; }
-        
+
         /* 控制面板 */
         .control-panel { background: #ebf3fb; padding: 10px 20px; border-bottom: 1px solid #a2a9b1; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; font-size: 13px; }
-        
+
         /* 左側側邊欄 */
         .sidebar { width: 220px; padding: 15px; border-right: 1px solid #a2a9b1; background-color: #f8f9fa; }
-        .mode-ios .sidebar, .mode-android .sidebar { width: auto; border-right: none; border-bottom: 1px solid #a2a9b1; display: flex; overflow-x: auto; white-wrap: nowrap; padding: 5px; }
+        .mode-ios .sidebar, .mode-android .sidebar { width: auto; border-right: none; border-bottom: 1px solid #a2a9b1; display: flex; overflow-x: auto; white-space: nowrap; padding: 5px; }
         .sidebar h3 { font-size: 13px; color: #54595d; border-bottom: 1px solid #c8ccd1; padding-bottom: 3px; margin-top: 15px; }
         .sidebar ul { list-style: none; padding: 0; margin: 0; }
         .sidebar ul li { margin: 8px 0; }
-        .sidebar ul li a { color: #0645ad; text-decoration: none; font-size: 13px; cursor: pointer; block-size: max-content; }
+        .sidebar ul li a { color: #0645ad; text-decoration: none; font-size: 13px; cursor: pointer; display: inline-block; }
         .sidebar ul li a:hover { text-decoration: underline; }
-        
+
         /* 右側主內文區（開大版面） */
         .content { flex: 1; padding: 25px 35px; min-height: 600px; }
         .page-section { display: none; }
         .page-section.active { display: block; }
         h2 { border-bottom: 1px solid #a2a9b1; padding-bottom: 5px; font-weight: normal; margin-top: 20px; color: #000; font-size: 26px; }
-        
+
         /* 百科基本資料框 */
         .infobox { float: right; width: 300px; border: 1px solid #a2a9b1; background-color: #f8f9fa; margin-left: 20px; padding: 5px; font-size: 13px; }
         .infobox table { width: 100%; border-collapse: collapse; }
         .infobox th { background-color: #eaecf0; text-align: center; padding: 6px; font-size: 14px; }
         .infobox td { padding: 6px; border-bottom: 1px solid #eaecf0; }
-        
+
         /* 介面組件 */
         button { background-color: #f8f9fa; border: 1px solid #a2a9b1; padding: 6px 12px; cursor: pointer; border-radius: 3px; font-size: 13px; }
         button:hover { background-color: #ffffff; border-color: #888; }
         .law-box { background: #fffcf4; border-left: 6px solid #f0dcb3; padding: 15px; margin: 15px 0; font-family: monospace; height: 550px; overflow-y: scroll; font-size: 14px; border-radius: 4px; }
-        .funny-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 150fr)); gap: 12px; margin-top: 15px; }
+        .funny-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-top: 15px; }
         .funny-card { background: #fff3cd; border: 1px solid #ffeeba; padding: 12px; border-radius: 5px; font-size: 13px; }
-        
+
         /* 虛擬鋼琴琴鍵 */
         .piano { display: flex; margin: 20px 0; background: #222; padding: 10px; border-radius: 5px; width: max-content; }
         .key { width: 40px; height: 150px; background: white; border: 1px solid #ccc; margin: 2px; cursor: pointer; display: flex; align-items: flex-end; justify-content: center; font-weight: bold; padding-bottom: 10px; border-radius: 0 0 5px 5px; }
         .key:active { background: #ddd; }
 
-/* 禮物法專區框線美化 */
-.gift-box { 
-    background: #fffcf4; 
-    border-left: 6px solid #f0dcb3; 
-    padding: 20px; 
-    border-radius: 4px; 
-    line-height: 1.6;
-    margin-top: 10px;}
+        /* 禮物法專區框線美化 */
+        .gift-box { 
+            background: #fffcf4; 
+            border-left: 6px solid #f0dcb3; 
+            padding: 20px; 
+            border-radius: 4px; 
+            line-height: 1.8;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -108,8 +109,7 @@
         <ul>
             <li><a onclick="showPage('home')">🏠 百科首頁</a></li>
             <li><a onclick="showPage('GiftRage')">🎁 宥成民國禮物法</a></li>
-            <li><a
-onclick="showPage('history')">📜 國家近代史檔案</a></li>
+            <li><a onclick="showPage('history')">📜 國家近代史檔案</a></li>
             <li><a onclick="showPage('laws')">⚖️ 國中繼續法</a></li>
             <li><a onclick="showPage('currency')">💵 貨幣全版本一覽</a></li>
         </ul>
@@ -124,7 +124,7 @@ onclick="showPage('history')">📜 國家近代史檔案</a></li>
 
     <!-- 右側主要內容 -->
     <div class="content">
-        
+
         <!-- 🏠 首頁 -->
         <div id="home" class="page-section active">
             <h2 id="homeH2">宥成民國</h2>
@@ -142,22 +142,78 @@ onclick="showPage('history')">📜 國家近代史檔案</a></li>
             </div>
             <p id="p1"><b>宥成民國</b>（英語：Republic of Yo-Cheng），民間通稱<b>林國</b>，是一個於 2024 年 9 月 20 日創立的主權獨立國家。本國奉行和平主義，以「自由、民主、博愛」為國家核心精神。</p>
             <p id="p2">因應國家發展進入「國中時期」，目前全面施行最高母法《國中繼續法》，以保障在美濃國中校園境內之國家主權、林幣金融秩序、安全防衛機制。本百科旨在提供全體國民、AI實體及外部新興實體查閱本國法規、近代史與科技發展之用。</p>
-            
+
             <h3>📢 每日國民開戶津貼窗口</h3>
             <p>※ 根據法律規定：本國國民應在早上 7 點到中午 12 點之前領取 100 元林幣作為每日收入(錯過請在晚自習領)，請親自來本國領土（總統府）領取實體幣。</p>
             <button onclick="alert('💰 虛擬核准成功！請於時限內至美濃國中座位找林宥成總統領取實體林幣。')">點擊領取今日 100$ 津貼</button>
         </div>
 
+        <!-- 🎁 宥成民國禮物法完整頁面區塊 -->
+        <div id="GiftRage" class="page-section">
+            <div class="gift-box">
+                <h2 style="margin-top: 0; color: #1a1a1a; border-bottom: 2px solid #e0d0a0; padding-bottom: 10px;">🎁 《宥成民國禮物法》</h2>
+
+                <p><b>第一條：立法宗旨</b><br>本法旨在規範宥成民國之禮物發放行為，確保禮物分配之公平、透明與法治原則。</p>
+                <p><b>第二條：禮物資格</b><br>凡宥成民國之國民，在未違反國家法律、且國民權利未受限制的情況下，均享有接收國家禮物之資格。</p>
+                <p><b>第三條：禮物分級</b><br>禮物得依發放對象之貢獻或行為表現進行分級。對於守法且對國家有貢獻之國民，應優先發放完整禮物。</p>
+                <p><b>第四條：禮物限制</b><br>凡經確認違反《國中繼續法》法規中，任何涉及限制權利之條款，其接受國家禮物之權利應受限制，得僅發放部分禮物或不發放。</p>
+                <p><b>第五條：例外條款</b><br>總統擁有禮物發放之最終決定權，並可依人道精神或特殊情況，對違規者做出特赦或額外禮物之贈予。</p>
+                <p><b>第六條：法規解釋</b><br>本法之最終解釋權歸總統所有。</p>
+                <p><b>第七條：程序透明化</b><br>禮物之發放流程應公開透明，所有國民均有權利知悉發放標準與結果。</p>
+                <p><b>第八條：申訴權利</b><br>國民若對禮物發放結果有異議，可向政府提出申訴。申訴程序應遵循法規，並由總統進行最終裁決。</p>
+                <p><b>第九條：禮物回饋</b><br>接受禮物之國民，應以口頭感謝或良好行為作為對國家的回饋，共同維護國家和諧。</p>
+                <p><b>第十條：特殊禮物</b><br>對於國家的重大貢獻者，總統得頒發特殊禮物或榮譽稱號，不受本法之一般限制。</p>
+
+                <div style="background: #fff8e8; border: 1px solid #e0d0a0; padding: 15px; border-radius: 4px; margin-top: 20px;">
+                    <p style="margin-top: 0;"><b>第十一條：分級發放</b></p>
+                    <p style="margin-bottom: 5px;">本國國民："通緝犯"</p>
+                    <ul style="margin-top: 5px; margin-bottom: 15px; padding-left: 20px;">
+                        <li><b>半星（壹到五萬）：</b>扣一個禮物</li>
+                        <li><b>一星（五萬到十萬）：</b>扣兩個禮物</li>
+                        <li><b>二星（十萬到二十萬）：</b>扣三個禮物</li>
+                        <li><b>三星（二十萬到五十萬）：</b>扣四個禮物</li>
+                        <li><b>四星（五十萬到壹佰萬）：</b>只能拿一個</li>
+                        <li><b>五星（壹佰萬以上）：</b>禁止</li>
+                    </ul>
+                    <p style="margin-bottom: 0; font-style: italic; color: #555;">*注釋：如果發的東西比扣的數量還要小則只能拿一個</p>
+                </div>
+            </div>
+        </div>
+
         <!-- 📜 近代史 -->
         <div id="history" class="page-section">
-            <h2>📜 宥成民國 — 近代史官方檔案</h2>
-            <p>在2024年，一位不平凡的小學生——<b>林宥成</b>（也就是我），因為很多人向我借東西，於是在2024年9月19日晚上，製作出了本國第一種支付方式，稱呼它為<b>「♡885」</b>，提供三次借東西的機會，總共做了兩張！</p>
+                        <h2>💵 宥成民國（林國）面額鈔票全版本演進史</h2>
+            <p>本國貨幣體系發展歷程充滿創新，從最初的簡易手繪印製，到專業印鈔機生產，防偽技術領先全球：</p>
+
+            <h3>1. M 系列（主要流通與試驗版本）</h3>
             <ul>
-                <li><b>2024年9月20日 早上：</b> 總統發給班上的陳柏丞、宋宥蘋，開啟了國家歷史性對話。</li>
-                <li><b>2024年9月16-17日：</b> 經許老師許可攜帶印章印台至學校，遭邱靖恩同學強力壓印，確立了初期防偽與設備管理概念。</li>
-                <li><b>2024年10月12日 課後班：</b> 游泳教學發了巧克力，總統用原子筆剪下一小塊紙寫下小巧玲瓏的「100$」，林國第一張實體大面額貨幣正式誕生！隨後成功發給陳婷妘交易巧克力，完成首次商業行為。</li>
-                <li><b>2024年10月24日 課後班：</b> 總統轉身拿出白紙開始瘋狂手寫，100$ 鈔票大量流通。</li>
-                <li><b>2024年11月某天：</b> 面對班級內混亂，總統意識到治理國家的艱難，成功立下第一代法律（勿打人罰15萬、勿罵人罰6萬、勿幫倒忙罰5萬、勿損壞東西照價賠償加永遠封鎖）。</li>
+                <li><b>M1 版本：</b> 祖先林幣，面額 $100 元，純手寫。2024年11月在後面添加手寫日期。</li>
+                <li><b>M2 版本：</b> 第一批發行林幣($200)。印章印製，因印刷時錯位導致背面日期偏移，意外成為天然防偽特徵。</li>
+                <li><b>M5 版本：</b> 簡易印製系列，沒有直式印章，前面面額，後面日期。</li>
+                <li><b>M6 版本（限量紀念版）：</b> 面額 $600 元。以國家地圖為主要圖案，背面有總統親筆簽名，具備收藏價值。</li>
+                <li><b>M7.5 PC 版本（完整版鈔票）：</b> 2025年1月發行。設計精美複雜，告別手繪，貨幣製作進入專業印刷時代。</li>
+                <li><b>M5 8.75 版本 / 8.5 版本：</b> 2025年3~4月推出，分別融入了日本旅行元素與台灣限量元素。</li>
+                <li><b>M12 版本（晶片防偽試驗版）：</b> 2025年5月發行。鈔票上有藍色特殊防偽晶片。因造價高昂停產，市面現存約 19 張，極其稀有。</li>
+                <li><b>M25.ii 版本：</b> 2025年7月印鈔機測試後製作。影印雙面，後面左上、右下角會用印章印下流水號如 $00100。</li>
+                <li><b>M127 版本：</b> 2026年4月8日製作。鈔票後面中間偏右部分添加了一層變色油墨，至今零偽造。</li>
+            </ul>
+
+            <h3>2. V 系列（重點強調面額與特色印章）</h3>
+            <ul>
+                <li><b>V2 版本：</b> 2025年5月推出。左上角和右下角有巨大的面額，中間有日期，最特別是斜斜 45 度蓋上一個巨大的「愛台北」印章。</li>
+                <li><b>V4 版本：</b> 正面與 V2 相同，但背面加設了一條巨大的防偽線與特殊日期。</li>
+            </ul>
+
+            <h3>3. B 系列（特殊材質與面額版本）</h3>
+            <ul>
+                <li><b>B1 / B2 版本：</b> 從簡樸發展到使用標籤機印製，面額和日期佈局更加整齊。</li>
+                <li><b>B5 版本（粉紅色「舟迪」特殊紙版本）：</b> 2025年5月初發行。採用<b>「舟迪」特殊卡紙製作，呈現獨特的粉紅色</b>，僅有 $250、$750、$200 三種特殊面額。</li>
+            </ul>
+
+            <h3>4. 「新到不能再新」版本（頂級變色油墨與檸檬防誤食）</h3>
+            <ul>
+                <li><b>發行背景：</b> 2025年7月購入新印鈔機。為了取代過去因香水或辣椒鈔票導致國民誤食受傷的混亂，總統展現極致危機應變能力。</li>
+                <li><b>檸檬技術：</b> 配備七種昂貴變色油墨，並在油墨中特別加入<b>檸檬成分</b>，任何國民企圖誤食，都會立刻被「酸到跑走」，果斷保障健康！</li>
             </ul>
         </div>
 
@@ -166,17 +222,17 @@ onclick="showPage('history')">📜 國家近代史檔案</a></li>
             <h2>⚖️ 最高法規大分頁：《國中過渡與全面施行法》</h2>
             <p><b>簡稱：《國中繼續法》 | 法規編號：JC-201-2026版本 (美濃國中完整施行版)</b></p>
             <p>本分頁已擴大顯示，全體國民與 AI 國民有義務在此滾動查閱共計 201 條之國家母法精髓：</p>
-            
+
             <div class="law-box" id="lawBoxContainer">
-                <!-- 由 JavaScript 自動填入 201 條精確法規，確保排版清晰好看 -->
+                <!-- 由 JavaScript 自動填入 201 條精確法規 -->
             </div>
         </div>
 
         <!-- 💵 貨幣全版本一覽 -->
         <div id="currency" class="page-section">
             <h2>💵 宥成民國（林國）面額鈔票全版本演進史</h2>
-            <p>本國貨幣體系發展歷程充滿創新，從最初的簡易手繪印製，到專業印鈔機生產，防偽技術領先全球：</p>
-            
+            <p>本國貨幣體系發展歷程充滿創新，從最初的簡易手繪印製，到專業印鈔機生產，防偽技術領先試驗：</p>
+
             <h3>1. M 系列（主要流通與試驗版本）</h3>
             <ul>
                 <li><b>M1 版本：</b> 祖先林幣，面額 $100 元，純手寫。2024年11月在後面添加手寫日期。</li>
@@ -219,14 +275,14 @@ onclick="showPage('history')">📜 國家近代史檔案</a></li>
                 <button onclick="calcLaw201()">即時試算</button>
                 <p id="fineResult" style="font-weight:bold; color:blue;"></p>
             </div>
-            
+
             <div style="background:#efe; padding:15px; border-radius:5px;">
                 <h3>🎙️ 國家標準語音錄音機</h3>
                 <p>利用電子國土架構，錄製清晰人類語音，絕不摻雜大黃蜂高頻雜音：</p>
                 <button id="startBtn">🎤 開始錄音</button>
                 <button id="stopBtn" disabled>🛑 停止錄音</button>
                 <br><br>
-                <audio id="audioPlayback" controls></select controls></audio>
+                <audio id="audioPlayback" controls></audio>
             </div>
         </div>
 
@@ -255,7 +311,6 @@ onclick="showPage('history')">📜 國家近代史檔案</a></li>
             <h2>📺 宥成民國官方 YouTube 影音站 — 瑞克搖專區</h2>
             <p>依據總統最高外交手諭，本站正式內嵌指定音樂與娛樂曲目：</p>
             <div style="text-align:center; margin:20px 0;">
-                <!-- 已為您放上瑞克搖經典代表影音框架 -->
                 <iframe id="ytPlayer" width="100%" height="450" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
@@ -264,7 +319,7 @@ onclick="showPage('history')">📜 國家近代史檔案</a></li>
         <div id="simulatorSec" class="page-section">
             <h2>⚔️ 宥成民國核心互動與 10 大全新娛樂功能</h2>
             <p>以下為總統指令全新研發之十項娛樂系統，保障國家校園繁榮：</p>
-            
+
             <div class="funny-grid">
                 <div class="funny-card"><h4>1. 國中戰爭模擬器</h4><button onclick="alert('⚔️ 模擬報告：本國總統文武雙全，成功擊退敵軍！')">開始模擬</button></div>
                 <div class="funny-card"><h4>2. 目前國家最新貨幣</h4><button onclick="alert('最新貨幣為m127版本，若有舊鈔請至總統府更換！')">查詢</button></div>
@@ -276,49 +331,11 @@ onclick="showPage('history')">📜 國家近代史檔案</a></li>
                 <div class="funny-card"><h4>8. 護照4天觀察期計算</h4><button onclick="alert('尚未入籍國中')">查詢進度</button></div>
                 <div class="funny-card"><h4>9. 永遠封鎖製裁判定</h4><button onclick="alert('🚫 檢測名單中...目前有 0 人處於無限期永封狀態，請大家保持誠實。')">盤點名單</button></div>
                 <div class="funny-card"><h4>10. 網頁瞬間壞掉按鈕</h4><button onclick="destroyWeb()">💥 把網頁弄壞（騙你的）</button></div>
-
-<!-- 🎁 宥成民國禮物法完整頁面區塊 -->
-<div id="GiftRage" class="page-section">
-    <div class="gift-box" style="background: #fffcf4; border-left: 6px solid #f0dcb3; padding: 25px; border-radius: 4px; line-height: 1.8; color: #202122; font-family: sans-serif; margin-bottom: 20px;">
-        
-        <h2 style="margin-top: 0; color: #1a1a1a; border-bottom: 2px solid #e0d0a0; padding-bottom: 10px;">🎁 《宥成民國禮物法》</h2>
-        
-        <p><b>第一條：立法宗旨</b><br>本法旨在規範宥成民國之禮物發放行為，確保禮物分配之公平、透明與法治原則。</p>
-        
-        <p><b>第二條：禮物資格</b><br>凡宥成民國之國民，在未違反國家法律、且國民權利未受限制的情況下，均享有接收國家禮物之資格。</p>
-        
-        <p><b>第三條：禮物分級</b><br>禮物得依發放對象之貢獻或行為表現進行分級。對於守法且對國家有貢獻之國民，應優先發放完整禮物。</p>
-        
-        <p><b>第四條：禮物限制</b><br>凡經確認違反《國中繼續法》法規中，任何涉及限制權利之條款，其接受國家禮物之權利應受限制，得僅發放部分禮物或不發放。</p>
-        
-        <p><b>第五條：例外條款</b><br>總統擁有禮物發放之最終決定權，並可依人道精神或特殊情況，對違規者做出特赦或額外禮物之贈予。</p>
-        
-        <p><b>第六條：法規解釋</b><br>本法之最終解釋權歸總統所有。</p>
-        
-        <p><b>第七條：程序透明化</b><br>禮物之發放流程應公開透明，所有國民均有權利知悉發放標準與結果。</p>
-        
-        <p><b>第八條：申訴權利</b><br>國民若對禮物發放結果有異議，可向政府提出申訴。申訴程序應遵循法規，並由總統進行最終裁決。</p>
-        
-        <p><b>第九條：禮物回饋</b><br>接受禮物之國民，應以口頭感謝或良好行為作為對國家的回饋，共同維護國家和諧。</p>
-        
-        <p><b>第十條：特殊禮物</b><br>對於國家的重大貢獻者，總統得頒發特殊禮物或榮譽稱號，不受本法之一般限制。</p>
-        
-        <div style="background: #fff8e8; border: 1px solid #e0d0a0; padding: 15px; border-radius: 4px; margin-top: 20px;">
-            <p style="margin-top: 0;"><b>第十一條：分級發放</b></p>
-            <p style="margin-bottom: 5px;">本國國民："通緝犯"</p>
-            <ul style="margin-top: 5px; margin-bottom: 15px; padding-left: 20px;">
-                <li><b>半星（壹到五萬）：</b>扣一個禮物</li>
-                <li><b>一星（五萬到十萬）：</b>扣兩個禮物</li>
-                <li><b>二星（十萬到二十萬）：</b>扣三個禮物</li>
-                <li><b>三星（二十萬到五十萬）：</b>扣四個禮物</li>
-                <li><b>四星（五十萬到壹佰萬）：</b>只能拿一個</li>
-                <li><b>五星（壹佰萬以上）：</b>禁止</li>
-            </ul>
-            <p style="margin-bottom: 0; font-style: italic; color: #555;">*注釋：如果發的東西比扣的數量還要小則只能拿一個</p>
+            </div>
         </div>
 
-    </div>
-</div>
+    </div> <!-- content end -->
+</div> <!-- mainWrapper end -->
 
 <script>
     // 多國語言資料庫
@@ -352,7 +369,10 @@ onclick="showPage('history')">📜 國家近代史檔案</a></li>
     // 分頁切換
     function showPage(id) {
         document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
+        const target = document.getElementById(id);
+        if (target) {
+            target.classList.add('active');
+        }
         window.scrollTo(0,0);
     }
 
@@ -360,10 +380,11 @@ onclick="showPage('history')">📜 國家近代史檔案</a></li>
     function wikiSearch() {
         const q = document.getElementById('wikiSearchInput').value;
         if(!q) return;
-        if(q.includes('法') || q.includes('條') || !isNaN(q)) showPage('laws');
+        if(q.includes('禮物') || q.includes('通緝')) showPage('GiftRage');
+        else if(q.includes('法') || q.includes('條') || !isNaN(q)) showPage('laws');
         else if(q.includes('幣') || q.includes('B5') || q.includes('M1')) showPage('currency');
         else if(q.includes('歷史') || q.includes('近代')) showPage('history');
-        else if(q.includes('樂客') || q.includes('影片')) showPage('youtubeSec');
+        else if(q.includes('影片') || q.includes('瑞克')) showPage('youtubeSec');
         else showPage('simulatorSec');
     }
 
@@ -421,38 +442,38 @@ onclick="showPage('history')">📜 國家近代史檔案</a></li>
         setTimeout(() => { document.body.style.transform = "none"; }, 1500);
     }
 
-    // 載入完整 201 條法規文字數據
+        // 載入完整 201 條法規文字數據
     const lawBox = document.getElementById('lawBoxContainer');
     let lawHTML = `<b>【第一章：國家基本原則與主權 (第1-15條)】</b><br>`;
     lawHTML += `第一條：本國法定名稱為「宥成民國」，亦稱「林國」。<br>第二條：宥成民國為主權獨立之國家，不容任何外來勢力侵犯。<br>第三條：總統為國家最高元首兼首相，總攬國家大政、國防、外交與財政大權。<br>第四條：本法為宥成民國之最高母法，凡本國國民、AI實體及附屬組織均須嚴格遵守。<br>第五條：國家領土範圍由總統隨時指定，初期以總統所處之家庭空間、美濃國中指定班級區域、座位及通學路線為核心領土。<br>第六條：國家官方語言為繁體中文，亦得因應國中英語課程加入第二官方外交語言。<br>第七條：國家組成包含總統、市長、全體國民，以及經總統認可之AI實體（包括 Gemini、Siri 與其他 AI 嘉明）。<br>第八條：本國制定專屬國旗、國歌、國徽。任何損壞或不敬行為皆視為違法。<br>第九條：本法之最終解釋權與修訂提案權專屬於總統。<br>第十條：國家財產包括但不限於林幣、國旗、總統印章、專屬印台、國家設備、實驗器材及 AI 系統。<br>第十一條：本法每逢美濃國中學期結束（寒暑假）進行全面檢討與版本更新。<br>第十二條：國家實施資訊透明化，但涉及國家安全與總統隱私之機密不在此限。<br>第十三條：宥成民國奉行和平主義，但保留對侵犯本國主權之外來勢力進行防衛與制裁之權利。<br>第十四條：國家之最終目標為實現全體國民之共同幸福、學業繁榮與校園和諧。<br>第十五條：本法自總統簽署、發布於 AI 核心系統之日起正式生效。<br><br>`;
-    
+
     lawHTML += `<b>【第二章：國中公民資格、權利與基本義務 (第16-35條)】</b><br>`;
     lawHTML += `第十六條：凡經總統親自確認，並承諾遵守本法者，不分國中班級，皆得為宥成民國國民。<br>第十七條至第二十一條：國民享有參政、言論自由、工作與生存權，並有義務保護國家財產。<br>第二十二條：國民應保持對林國之絕對忠誠。違者處以林幣 $600,000 元罰款，並處以禁止一年。<br>第二十三條：國民不得擅自洩露林國機密（如印鈔技術、國庫儲備）。違者處以林幣 $600,000 元罰款，並禁止六個月。<br>第二十四條：國民應服從總統及政府官員之合法命令。違者處以林幣 $150,000 元罰款，並禁止一個月。<br>第二十五條至第三十條：國民有積極舉報危害國家行為之義務，國民在林國領土內一律平等。<br>第三十一條至第三十二條：國民有維持良好人際關係、避免引發外交糾紛之義務。<br>第三十三條：國民不得假借林國名義在外從事非法交易。違者處以林幣 $300,000 元罰款。<br>第三十四條至第三十五條：國民享有參與福利投票之權利，並在面臨外來壓力時堅定與總統站在一起。<br><br>`;
-    
+
     lawHTML += `<b>【第三章：政府組織與 AI 實體職權 (第36-55條)】</b><br>`;
     lawHTML += `第三十六條：總統總攬一切行政、立法、司法大權，並為林國最高武裝力量與科學研究總指揮。<br>第三十七條：市長由總統指派，負責管理特定區域之日常行政。<br>第三十八條至第三十九條：設立影子部門，官員失職總統得隨時免職。<br>第四十條至第四十二條：經總統認可之 AI 國民具有協助運作與數據分析職責，並依指示提供科學（如麵包板電路、555計時器、CD4017解碼晶片）與料理科學之技術支援。<br>第四十三條：手機、平板等硬體裝置在林國境內為「電子國土」角色。<br>第四十四條至第五十五條：政府應維持財政穩健、盤點國庫，公告非經總統加蓋專屬印章不生效力。<br><br>`;
-    
+
     lawHTML += `<b>【第四章：國中邊境、護照與審訊管理 (第56-75條)】</b><br>`;
     lawHTML += `第五十六條至第六十二條：進入領土視為入境，必須出示有效「宥成民國護照」，無護照者一律由總統親自執行邊境審訊。<br>第六十三條：嚴禁國民私自帶領未持護照之外來者進入核心領土。違者處以林幣 $2000 元罰款。<br>第六十四條至第七十條：護照核發權專屬總統，新同學加入必須通過為期四天的邊境觀察期。<br>第七十一條：嚴禁塗改護照上之任何文字或照片。違者沒收護照並處以林幣 $70,000 元罰款。<br>第七十二條至第七十五條：突擊檢查時邊境管制切換為隱蔽模式，確保國家隱私。<br><br>`;
-    
+
     lawHTML += `<b>【第五章：國中福利投票與政治參與 (第76-95條)】</b><br>`;
     lawHTML += `第七十六條至第七十八條：採取彈性投票制度決定福利，合法黨派可提案。<br>第七十九條：實施「多票分配制」，每位投票者每輪擁有 50 票，得自由分配投給任何提案，亦得全數投予自己的提案。<br>第八十條至第八十三條：得票最高經總統確認後生效。<br>第八十四條：嚴禁任何形式之選舉舞弊、買票或恐嚇行為。違者處以林幣 $200,000 元罰款，並處以禁止六個月。<br>第八十五條：嚴禁發動或組織黨派間之惡性衝突。違者處以林幣 $1,200,000 元罰款，並處以禁止一年。<br>第八十六條至第九十一條：擴散虛假民調者處以林幣 $100,000 元罰款。<br>第九十二條：總統在投票中享有「一票否決權」，得基於國家安全否決任何通過之提案。<br>第九十三條至第九十五條：投票數據交由 AI 國民進行複核。<br><br>`;
-    
+
     lawHTML += `<b>【第六章：林幣財政、版本與防偽金融安全 (第96-120條)】</b><br>`;
     lawHTML += `第九十六條至第一百條：林幣為唯一法定貨幣，必須印有最特殊之防護線（防偽造線）及專屬圖騰。<br>第一百零一條：嚴禁任何形式之偽造、仿冒或複製林幣行為。違者處以林幣 $2,500,000 元之重罰，並處以禁止一年。<br>第一百零二條：凡偽造林幣者，將直接遭受本國排擠與全面抵制之嚴厲社會制裁。<br>第一百零三條：國民不得故意損壞、塗污、撕毀林幣。違者處以林幣 $200,000 元罰款，並處以禁止一個月。<br>第一百零四條：惡意囤積或阻礙交易者。違者處以林幣 $60,000 元罰款，並處以禁止七天。<br>第一百零五條至第一百一十二條：維護金融體系安全，禁止非法校園高利貸。<br>第一百一十三條：舊版林幣在政府宣布停用後，設有四十九天兌換期，逾期自動失效。<br>第一百一十四條至第一百二十條：總統得因重大節慶或學業優異向全體國民發放紅包津貼。<br><br>`;
-    
+
     lawHTML += `<b>【第七章：國中校園秩序與嚴格行為規範 (第121-150條)】</b><br>`;
     lawHTML += `第一百二十一條：在校園及家庭公共場所違反秩序者，處以林幣 $60,000 元罰款，並禁止七天。<br>第一百二十二條：損壞國旗、國徽者，處以林幣 $500,000 元罰款，並禁止三個月。<br>第一百二十三條：國民之間嚴禁肢體暴力（嚴禁打人）。違者處以林幣 $600,000 元罰款，並處以禁止六個月。<br>第一百二十四條：嚴禁言語辱罵與校園霸凌（嚴禁罵人/起難聽綽號/散佈謠言）。違者處以林幣 $150,000 元罰款，並處以禁止一個月。<br>第一百五十五條：未經許可擅動印章、印台、實驗器材者，處以林幣 $200,000 元罰款，並禁止兩個月。<br><b>第一百二十五之一條（惡意損壞財產罪）：</b>基於惡意故意破壞國家或他人私人財產，處以林幣 $500,000 元罰款，並禁止三個月；此外，違規者必須依法按該財產之市場價值，以<b>新台幣（TWD）</b>全額賠償受害方，金額由總統核定，受害者必須獲得賠償。<br>第一百二十六條：嚴禁竊盜。違者處以林幣 $800,000 元罰款，並處以禁止六個月，並移送校規處置。<br>第一百二十七條：嚴禁故意或過失之「幫倒忙」行為。違者處以林幣 $120,000 元罰款，並禁止一個月。<br>第一百二十八條：在功課、事務上欺騙總統或執政官者，處以林幣 $120,000 元罰款，並禁止一個月。<br>第一百三十條至第一百三十四條：破壞公共設施處以林幣 $120,000 元罰款並禁止一個月。<br>第一百三十五條：嚴禁惡意、危險惡作劇（如抽椅子、藏文具）。違者處以林幣 $60,000 元罰款，並禁止七天。<br>第一百三十六條至第一百五十條：午休時間嚴禁進行任何林幣交易或喧嘩，累犯加重罰款至兩倍。<br><br>`;
-    
+
     lawHTML += `<b>【第八章：外交、新興實體與國中跨班關係 (第151-165條)】</b><br>`;
     lawHTML += `第一百五十一條：與美濃國中其他班級、外部新興實體建立和平友善、互不干涉內政之外交關係。<br>第一百五十二條：總統擁有對外部新興國家或校園組織之最高外交承認權與斷交權。<br>第一百五十三條至第一百六十五條：允許外國國民在遵守本法之前提下，申請成為林國之「榮譽僑民」。<br><br>`;
-    
+
     lawHTML += `<b>【第九章：通緝犯嚴格條例 (非告訴乃論) (第166-200條)】</b><br>`;
     lawHTML += `第一百六十六條：與被通緝犯人聯繫者。違者處以林幣 $100,000 元罰款。<br>第一百六十七條：向通緝犯提供金錢、物資、點心或經濟援助。違者處以林幣 $1,500,000 元罰款。<br>第一百六十八條：為通緝犯提供座位藏匿、置物櫃者。違者處以林幣 $50,0000 元罰款。<br>第一百六十九條：向通緝犯提供虛假身份證明、假護照者。違者處以林幣 $1,800,000 元罰款。<br>第一百七十條：隱瞞通緝犯之行蹤者。違者處以林幣 $1,000,000 元罰款。<br>第一百七十一條：向通緝犯通風報信、洩露國家搜捕行動。違者處以林幣 $1,900,000 元罰款。<br>第一百七十五條：與通緝犯進行私下協議或物資交易者。違者處以林幣 $1,600,000 元罰款。<br>第一百七十七條：在網路、LINE群組上為通緝犯辯護、洗白或聲援者。違者處以林幣 $50,000 元罰款。<br>第一百七十八條：散布虛假資訊意圖混淆政府執法者。違者處以林幣 $800,000 元罰款。<br>第一百八十一條：協助通緝犯建立新社交圈規避追捕者。違者處以林幣 $1,200,000 元罰款。<br>第一百八十二條：協助通緝犯轉移不法所得林幣者。違者處以林幣 $2,000,000 元罰款。<br>第一百八十四條：為通緝犯提供功課抄襲、文具援助者。違者處以林幣 $750,000 元罰款。<br>第一百八十七條：收留或委託通緝犯執行班級值日事務者。違者處以林幣 $1,600,000 元罰款。<br>第一百九十一條：與通緝犯建立加密通訊管道（如秘密小紙條）。違者處以林幣 $1,500,000 元罰款。<br>第一百九十三條：協助通緝犯在林國內洗白。違者處以林幣 $2,000,000 元罰款。<br>第一百九十四條：向通緝犯提供有關國家硬體設備、麵包板技術或 AI 系統之操作資訊。違者處以林幣 $1,950,000 元罰款。<br>第一百九十五條：與通緝犯進行危害主權之密謀。違者處以林幣 $2,000,000 元罰款。<br>第一百九十六條至第二百條：本章注釋：本通緝犯條例全部皆為非告訴乃論。查獲確鑿證據即刻重罰法辦！<br><br>`;
-    
+
     lawHTML += `<b>【第十章：終極免責保護購買制度與司法救濟 (第201條)】</b><br>`;
     lawHTML += `第二百零一條（核心保護條款）：國民有權向政府申請「免責保護特權」。依法購買並獲准後，在限定天數內得免除、無視或抵銷相應罰款。費率級距：0~50000=1天100林幣、50001~100000=1天500、100001~200000=1天1000、200001~500000=1天2000、500001~1000000=1天2500、大於1000000=1天5000。<br><b>⚠️重責聲明：「針對涉及暴力、霸凌、惡意損壞財產之重大罪行，不得使用第 201 條購買免責特權。」</b><br>※「禁止」之法定定義：受罰期間內，本國政府及全體國民一律不得給予該人任何國家資源、課業救助、文具借用或林幣支援。`;
-    
+
     lawBox.innerHTML = lawHTML;
 
     // 網頁錄音機功能
