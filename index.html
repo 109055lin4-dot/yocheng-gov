@@ -69,6 +69,133 @@
 </head>
 <body>
 
+<!-- 迎賓畫面結構 -->
+<div id="welcome-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #0b0b0b; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 99999; transition: opacity 1s ease;">
+  <canvas id="fireworks-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
+  
+  <!-- 炫酷霓虹流動大字 -->
+  <div class="neon-anniversary">宥成民國二週年快樂</div>
+  <div style="color: #00ffff; margin-top: 25px; font-size: 1.1rem; z-index: 10000; letter-spacing: 4px; text-shadow: 0 0 10px #00ffff; animation: neon-blink 1s infinite alternate;">SYSTEM READY • 正在進入宥成民國網頁...</div>
+</div>
+
+<style>
+  @keyframes rainbow-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes neon-pulse {
+    0%, 100% { transform: scale(1); text-shadow: 0 0 20px #ff00de, 0 0 40px #ff00de, 0 0 60px #ff00de; }
+    50% { transform: scale(1.06); text-shadow: 0 0 30px #00ffff, 0 0 60px #00ffff, 0 0 90px #00ffff; }
+  }
+  @keyframes neon-blink {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+  }
+
+  .neon-anniversary {
+    font-size: 4rem;
+    font-weight: bold;
+    z-index: 10000;
+    text-align: center;
+    background: linear-gradient(45deg, #ff0055, #ffae00, #00ffcc, #7700ff, #ff0055);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow-flow 2.5s linear infinite, neon-pulse 1.5s ease-in-out infinite;
+  }
+</style>
+
+<script>
+  // 【安全保證區】不管煙火有沒有報錯，6秒（6000毫秒）一到絕對強制關閉！
+  setTimeout(function() {
+    var overlay = document.getElementById('welcome-overlay');
+    if (overlay) {
+      overlay.style.opacity = '0';
+      setTimeout(function() {
+        overlay.style.display = 'none';
+      }, 1000); // 1秒淡出動畫結束後完全隱藏
+    }
+  }, 5000);
+
+  // 【煙火特效區】（加上防護罩，報錯也不會影響上面 6 秒鐘的強制放行）
+  try {
+    const canvas = document.getElementById('fireworks-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor(x, y, color) {
+        this.x = x; this.y = y; this.color = color;
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 7 + 2;
+        this.vx = Math.cos(angle) * speed;
+        this.vy = Math.sin(angle) * speed;
+        this.alpha = 1;
+        this.decay = Math.random() * 0.015 + 0.01;
+      }
+      update() {
+        this.x += this.vx; this.y += this.vy;
+        this.vy += 0.06;
+        this.alpha -= this.decay;
+      }
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle = this.color;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 3.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    let particles = [];
+    const neonColors = ['#ff0055', '#00ffff', '#ffae00', '#00ff66', '#cc00ff'];
+
+    function createFirework() {
+      const x = Math.random() * canvas.width * 0.8 + canvas.width * 0.1;
+      const y = Math.random() * canvas.height * 0.5 + canvas.height * 0.1;
+      const color = neonColors[Math.floor(Math.random() * neonColors.length)];
+      for (let i = 0; i < 45; i++) {
+        particles.push(new Particle(x, y, color));
+      }
+    }
+
+    let animationId;
+    function loop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, index) => {
+        p.update();
+        p.draw();
+        if (p.alpha <= 0) particles.splice(index, 1);
+      });
+      animationId = requestAnimationFrame(loop);
+    }
+    loop();
+
+    const fireworkInterval = setInterval(createFirework, 350);
+
+    // 6秒到時清除煙火記憶體
+    setTimeout(() => {
+      clearInterval(fireworkInterval);
+      cancelAnimationFrame(animationId);
+    }, 6000);
+
+  } catch(e) {
+    console.log("煙火小插曲，但不影響進網頁");
+  }
+</script>
+
 <!-- 頂部控制面板：語系與載具切換 -->
 <div class="control-panel">
     <div>
