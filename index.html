@@ -65,136 +65,290 @@
             line-height: 1.8;
             margin-top: 10px;
         }
+/* 復刻圖片風格的通知彈窗 */
+.toast-card {
+  position: fixed;
+  top: 20px;
+  right: -420px; /* 初始藏在螢幕右側外 */
+  width: 380px;
+  background-color: #2b1a10; /* 圖片中的深棕色背景 */
+  border: 3px solid #e2c091; /* 奶白色/淺淺金黃外框 */
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  transition: right 0.5s cubic-bezier(0.25, 1, 0.5, 1); /* 平滑滑動動畫 */
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+/* 顯示時的位置 */
+.toast-card.show {
+  right: 20px;
+}
+
+/* 左側圓形頭像容器 */
+.toast-avatar {
+  width: 55px;
+  height: 55px;
+  min-width: 55px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
+  border: 2px solid #e2c091;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toast-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 右側文字內容區 */
+.toast-content {
+  color: #e2c091; /* 文字顏色 */
+}
+
+.toast-title {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.1;
+  margin-bottom: 3px;
+  color: #fff; /* 標題顏色 */
+}
+
+.toast-message {
+  font-size: 13px;
+  line-height: 1.3;
+  color: #d1b48c;
+}
     </style>
 </head>
 <body>
-
-<!-- 迎賓畫面結構 -->
-<div id="welcome-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #0b0b0b; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 99999; transition: opacity 1s ease;">
-  <canvas id="fireworks-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
   
-  <!-- 炫酷霓虹流動大字 -->
-  <div class="neon-anniversary">宥成民國二週年快樂</div>
-  <div style="color: #00ffff; margin-top: 25px; font-size: 1.1rem; z-index: 10000; letter-spacing: 4px; text-shadow: 0 0 10px #00ffff; animation: neon-blink 1s infinite alternate;">SYSTEM READY • 正在進入宥成民國網頁...</div>
+  <!-- ==================== 拉不拉斯專屬・響應式極客炫彩開場動畫 ==================== -->
+<div id="intro-screen" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: radial-gradient(circle, #0b1329 0%, #030712 100%); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 99999; transition: opacity 1.2s ease; overflow: hidden; font-family: monospace;">
+    
+    <!-- 畫布：發光背景與像素爆炸重組動畫 -->
+    <canvas id="particleCanvas" style="display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
+
+    <!-- 右上方：正在跳舞/彈跳的像素小精靈 -->
+    <div id="dancing-pixel" style="position: absolute; top: 40px; right: 50px; width: 24px; height: 24px; background: #00ffcc; box-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc; border-radius: 4px; animation: dance 0.6s infinite alternate ease-in-out;"></div>
+
+    <!-- 左下角：中文進度與百分比 -->
+    <div id="ui-bottom-left" style="position: absolute; bottom: 25px; left: 25px; color: #00ffcc; font-size: 13px; background: rgba(0, 255, 204, 0.05); border: 1px solid rgba(0, 255, 204, 0.25); padding: 8px 14px; border-radius: 6px; backdrop-filter: blur(4px); box-shadow: 0 0 10px rgba(0,255,204,0.1);">
+        網頁架構建置中... <span id="counter-num" style="font-weight: bold; font-size: 15px;">0</span>%
+    </div>
+
+    <!-- 右下角：瘋狂彈出代碼的駭客終端機微型視窗 -->
+    <div id="ui-bottom-right" style="position: absolute; bottom: 25px; right: 25px; width: 280px; height: 95px; background: rgba(0, 0, 0, 0.85); border: 1px solid #00ffcc; border-radius: 6px; padding: 8px 10px; box-sizing: border-box; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; box-shadow: 0 0 15px rgba(0,255,204,0.2);">
+        <div style="font-size: 9px; color: #00ffcc; border-bottom: 1px dashed rgba(0,255,204,0.3); padding-bottom: 3px; margin-bottom: 4px; display: flex; justify-content: space-between;">
+            <span>[ BUILD_CORE_LOG ]</span>
+            <span style="animation: blink 1s infinite;">● 運行中</span>
+        </div>
+        <div id="terminal-log" style="font-size: 10px; color: #00ffcc; opacity: 0.85; line-height: 1.25; overflow: hidden; display: flex; flex-direction: column;">
+            > 初始化核心系統...
+        </div>
+    </div>
 </div>
 
+<!-- 內嵌 CSS 動畫（跳舞、閃爍、響應式斷點調整） -->
 <style>
-  @keyframes rainbow-flow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  @keyframes neon-pulse {
-    0%, 100% { transform: scale(1); text-shadow: 0 0 20px #ff00de, 0 0 40px #ff00de, 0 0 60px #ff00de; }
-    50% { transform: scale(1.06); text-shadow: 0 0 30px #00ffff, 0 0 60px #00ffff, 0 0 90px #00ffff; }
-  }
-  @keyframes neon-blink {
-    from { opacity: 0.4; }
-    to { opacity: 1; }
-  }
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.2; }
+    }
+    @keyframes dance {
+        0% { transform: translateY(0px) rotate(0deg) scale(1); background: #00ffcc; box-shadow: 0 0 15px #00ffcc; }
+        50% { transform: translateY(-18px) rotate(45deg) scale(1.2); background: #ff00ff; box-shadow: 0 0 25px #ff00ff; }
+        100% { transform: translateY(0px) rotate(90deg) scale(1); background: #00ffff; box-shadow: 0 0 15px #00ffff; }
+    }
 
-  .neon-anniversary {
-    font-size: 4rem;
-    font-weight: bold;
-    z-index: 10000;
-    text-align: center;
-    background: linear-gradient(45deg, #ff0055, #ffae00, #00ffcc, #7700ff, #ff0055);
-    background-size: 400% 400%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: rainbow-flow 2.5s linear infinite, neon-pulse 1.5s ease-in-out infinite;
-  }
+    /* 手機版智慧自適應邊框調整 */
+    @media (max-width: 768px) {
+        #ui-bottom-right {
+            width: 210px !important;
+            height: 80px !important;
+            bottom: 15px !important;
+            right: 15px !important;
+        }
+        #ui-bottom-left {
+            bottom: 15px !important;
+            left: 15px !important;
+            font-size: 11px !important;
+            padding: 6px 10px !important;
+        }
+        #dancing-pixel {
+            top: 20px !important;
+            right: 20px !important;
+            width: 18px !important;
+            height: 18px !important;
+        }
+    }
 </style>
 
+<!-- 內嵌 JavaScript 邏輯：偵測裝置、微爆炸重組、固定 7 秒、終端機瘋狂代碼 -->
 <script>
-  // 【安全保證區】不管煙火有沒有報錯，6秒（6000毫秒）一到絕對強制關閉！
-  setTimeout(function() {
-    var overlay = document.getElementById('welcome-overlay');
-    if (overlay) {
-      overlay.style.opacity = '0';
-      setTimeout(function() {
-        overlay.style.display = 'none';
-      }, 1000); // 1秒淡出動畫結束後完全隱藏
-    }
-  }, 5000);
+    window.addEventListener('DOMContentLoaded', () => {
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
 
-  // 【煙火特效區】（加上防護罩，報錯也不會影響上面 6 秒鐘的強制放行）
-  try {
-    const canvas = document.getElementById('fireworks-canvas');
-    const ctx = canvas.getContext('2d');
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+        // 🎯 判斷是否為手機裝置 (用於動態微調字體與爆炸半徑)
+        const isMobile = window.innerWidth <= 768;
+        const targetText = "歡迎進入宥成民國官方網頁";
+        
+        let particles = [];
+        // 手機版字體縮小，避免超出螢幕邊界
+        const fontSize = isMobile ? Math.min(window.innerWidth / 8, 38) : Math.min(window.innerWidth / 10, 56);
 
-    class Particle {
-      constructor(x, y, color) {
-        this.x = x; this.y = y; this.color = color;
-        const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 7 + 2;
-        this.vx = Math.cos(angle) * speed;
-        this.vy = Math.sin(angle) * speed;
-        this.alpha = 1;
-        this.decay = Math.random() * 0.015 + 0.01;
-      }
-      update() {
-        this.x += this.vx; this.y += this.vy;
-        this.vy += 0.06;
-        this.alpha -= this.decay;
-      }
-      draw() {
-        ctx.save();
-        ctx.globalAlpha = this.alpha;
-        ctx.fillStyle = this.color;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, 3.5, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-      }
-    }
+        // 建立暫時畫布抓取文字像素
+        const tempCanvas = document.createElement('canvas');
+        const tCtx = tempCanvas.getContext('2d');
+        tempCanvas.width = window.innerWidth;
+        tempCanvas.height = window.innerHeight;
 
-    let particles = [];
-    const neonColors = ['#ff0055', '#00ffff', '#ffae00', '#00ff66', '#cc00ff'];
+        tCtx.font = `bold ${fontSize}px monospace`;
+        tCtx.fillStyle = 'white';
+        tCtx.textAlign = 'center';
+        tCtx.textBaseline = 'middle';
+        tCtx.fillText(targetText, tempCanvas.width / 2, tempCanvas.height / 2);
 
-    function createFirework() {
-      const x = Math.random() * canvas.width * 0.8 + canvas.width * 0.1;
-      const y = Math.random() * canvas.height * 0.5 + canvas.height * 0.1;
-      const color = neonColors[Math.floor(Math.random() * neonColors.length)];
-      for (let i = 0; i < 45; i++) {
-        particles.push(new Particle(x, y, color));
-      }
-    }
+        const textData = tCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
+        const pixels = textData.data;
 
-    let animationId;
-    function loop() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((p, index) => {
-        p.update();
-        p.draw();
-        if (p.alpha <= 0) particles.splice(index, 1);
-      });
-      animationId = requestAnimationFrame(loop);
-    }
-    loop();
+        // 像素採樣與微爆炸特效設定
+        const sampleRate = isMobile ? 3 : 4; 
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
 
-    const fireworkInterval = setInterval(createFirework, 350);
+        for (let y = 0; y < tempCanvas.height; y += sampleRate) {
+            for (let x = 0; x < tempCanvas.width; x += sampleRate) {
+                const index = (y * tempCanvas.width + x) * 4;
+                if (pixels[index + 3] > 128) {
+                    // 讓像素一開始集中在畫面中心，帶有一點「微爆炸」往外衝再收回的向量
+                    const angle = Math.random() * Math.PI * 2;
+                    const blastRadius = Math.random() * (isMobile ? 120 : 250) + 50;
+                    
+                    particles.push({
+                        targetX: x,
+                        targetY: y,
+                        x: centerX + Math.cos(angle) * blastRadius,
+                        y: centerY + Math.sin(angle) * blastRadius,
+                        color: `hsl(${Math.random() * 60 + 150}, 100%, 60%)`, // 炫彩發光青綠色
+                        size: Math.random() * 2 + 1,
+                        speed: Math.random() * 0.05 + 0.08
+                    });
+                }
+            }
+        }
 
-    // 6秒到時清除煙火記憶體
-    setTimeout(() => {
-      clearInterval(fireworkInterval);
-      cancelAnimationFrame(animationId);
-    }, 6000);
+        // 固定設定為 7 秒 (7000 毫秒)
+        const duration = 4000;
+        let startTime = null;
+        const counterNumEl = document.getElementById('counter-num');
+        const terminalLogEl = document.getElementById('terminal-log');
 
-  } catch(e) {
-    console.log("煙火小插曲，但不影響進網頁");
-  }
+        // 右下角瘋狂彈出代碼題庫
+        const codePool = [
+            "RESPONSIVE_GRID_LOADED...",
+            "INJECTING_NEON_GLOW_EFFECTS...",
+            "COMPILING_MOBILE_VIEWPORT...",
+            "RENDERING_PIXEL_SPRITES [OK]",
+            "FETCHING_USER_CONFIGURATIONS...",
+            "ESTABLISHING_SECURE_SESSION...",
+            "ALLOCATING_CANVAS_MEMORY...",
+            "DECRYPTING_MATRIX_STREAM...",
+            "OPTIMIZING_TOUCH_INTERACTIONS...",
+            "DEPLOYING_GITHUB_PAGES_ASSETS...",
+            "SYSTEM_CORE_STABILIZED...",
+            "READY_TO_LAUNCH_PORTAL..."
+        ];
+
+        let logInterval = setInterval(() => {
+            const code1 = codePool[Math.floor(Math.random() * codePool.length)];
+            const code2 = codePool[Math.floor(Math.random() * codePool.length)];
+            const hex = "0x" + Math.floor(Math.random() * 65535).toString(16).toUpperCase();
+            
+            terminalLogEl.innerHTML = `
+                <div style="opacity: 0.5;">> ${hex} : ${code1}</div>
+                <div style="color: #ffffff;">> ${code2}</div>
+            `;
+        }, 160);
+
+        function animate(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const elapsed = timestamp - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            // 更新左下角百分比
+            counterNumEl.innerText = Math.floor(progress * 100);
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 繪製文字左右兩側的光暈背景
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = "#00ffcc";
+
+            particles.forEach((p) => {
+                // 聚合理論：從爆炸位置瞬間吸回目標位置
+                p.x += (p.targetX - p.x) * p.speed;
+                p.y += (p.targetY - p.y) * p.speed;
+
+                ctx.fillStyle = p.color;
+                ctx.fillRect(p.x, p.y, p.size, p.size);
+            });
+
+            // 關閉陰影避免影響效能
+            ctx.shadowBlur = 0;
+
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                // 停止日誌
+                clearInterval(logInterval);
+                terminalLogEl.innerHTML = `<div style="color: #ffffff; font-weight: bold;">> 載入完成！歡迎光臨。</div>`;
+                
+                // 7秒到，優雅淡出
+                const introScreen = document.getElementById('intro-screen');
+                introScreen.style.opacity = '0';
+                setTimeout(() => {
+                    introScreen.style.display = 'none';
+                }, 1000);
+            }
+        }
+
+        requestAnimationFrame(animate);
+    });
 </script>
+<!-- ==================== 動畫結束 ==================== -->
+
+<!-- 右上角彈出通知框 -->
+<div id="toastNotification" class="toast-card">
+  <div class="toast-avatar">
+    <!-- 請替換成您的圖片路徑，若沒有圖片會顯示預設圖示 -->
+    <img src="your-image.png" alt="icon" onerror="this.src='https://via.placeholder.com/60'">
+  </div>
+  <div class="toast-content">
+    <div class="toast-title">Error</div>
+    <div class="toast-message">
+      Note to self: stick with the team.<br>
+      Encounter the Glitch.
+    </div>
+  </div>
+</div>
 
 <!-- 頂部控制面板：語系與載具切換 -->
 <div class="control-panel">
@@ -621,6 +775,50 @@
         } catch(err) { alert('未偵測到錄音麥克風設備！'); }
     };
     stopBtn.onclick = () => { mediaRecorder.stop(); startBtn.disabled = false; stopBtn.disabled = true; };
+function playNote(freq) {
+  const audioCtx = window.audioCtx || (window.audioCtx = new (window.AudioContext || window.webkitAudioContext)());
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+window.addEventListener('DOMContentLoaded', () => {
+  const toast = document.getElementById('toastNotification');
+  
+  // 建立音效物件 (請將 your-music.mp3 替換成您的音效檔檔名或網址)
+  const popupSound = new Audio('標準錄音 311.mp3');
+
+  // 1. 等待 7 秒 (7000 毫秒)
+  setTimeout(() => {
+    // 彈出通知框
+    toast.classList.add('show');
+
+    // 同步播放 MP3 音效
+    popupSound.play().catch(error => {
+      console.log("音效播放被瀏覽器自動播放政策阻擋，使用者需先點擊頁面一次：", error);
+    });
+
+    // 2. 顯示 4 秒 (4000 毫秒) 後自動收回
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 4000);
+
+  }, 7000);
+});
+
+// 頁面載入完畢後觸發計時器
+window.addEventListener('DOMContentLoaded', () => {
+  const toast = document.getElementById('toastNotification');
+
+  // 1. 等待 7 秒 (7000 毫秒) 後滑入
+  setTimeout(() => {
+    toast.classList.add('show');
+
+    // 2. 顯示 4 秒 (4000 毫秒) 後往右滑出隱藏
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 4000);
+
+  }, 7000);
+});
 </script>
 
 </body>
